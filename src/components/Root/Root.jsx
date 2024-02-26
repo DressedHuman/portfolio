@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 
 const Root = () => {
     return (
-        <div>
+        <div className="space-y-7">
             <Header />
             <Outlet />
         </div>

@@ -1,12 +1,49 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Motiur Rahman Mizan</title>
-  </head>
-  <body class="bg-slate-800 text-white min-h-[100vh]">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="./src/assets/Header/mrmizan.png" />
+  <title>Motiur Rahman Mizan</title>
+</head>
+
+<body class="bg-slate-800 text-white min-h-[100vh] lg:cursor-none">
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+
+  <!-- custom cursor -->
+  <div id="cursor-in"
+    class="fixed -bottom-[100%] -left-[100%] w-[.75vw] h-[.75vw] rounded-[50%] -translate-x-[50%] -translate-y-[50%] bg-[goldenrod] z-[9999] pointer-events-none hidden lg:block">
+  </div>
+  <!-- outer custom cursor -->
+  <div id="cursor-out" class="fixed -bottom-[100%] -left-[100%] w-[1.57vw] h-[1.57vw] border-2 border-[goldenrod] rounded-[50%] -translate-x-[50%] -translate-y-[50%]
+    bg-transparent z-[9998] pointer-events-none hidden lg:block duration-75 ease-linear">
+  </div>
+
+  <!-- script for positioning custom cursor -->
+  <script>
+    const cursorElements = document.querySelectorAll('#cursor-in, #cursor-out');
+
+    window.addEventListener('mousemove', (e) => {
+      cursorElements.forEach(cursorElement => {
+        cursorElement.style.top = `${e.clientY}px`;
+        cursorElement.style.left = `${e.clientX}px`;
+      })
+    })
+    
+    // giving effects to custom cursors on mouse button down
+    window.addEventListener('mousedown', (e) => {
+      cursorElements[1].style.backgroundColor = '#dddeee5f';
+      cursorElements[1].style.padding = '1.25vw'
+    })
+
+    // normalize custom cursors on mouse button up
+    window.addEventListener('mouseup', (e) => {
+      cursorElements[1].style.backgroundColor = 'transparent';
+      cursorElements[1].style.padding = '0px';
+    })
+  </script>
+</body>
+
 </html>
