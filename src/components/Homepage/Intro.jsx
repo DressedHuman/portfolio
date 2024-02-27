@@ -7,7 +7,7 @@ const Intro = () => {
 
     useEffect(() => {
         const typed = new Typed(myTitle.current, {
-            strings: ['Programmer', 'Web Developer', 'Front-end Developer', 'React Developer',].map(str => str + '.'),
+            strings: ['Programmer', 'Web Developer', 'Front-End Developer', 'React Developer',].map(str => str + '.'),
             typeSpeed: 175,
             backSpeed: 57,
             backDelay: 2257,

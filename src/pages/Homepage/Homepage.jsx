@@ -12,7 +12,7 @@ const Homepage = () => {
             </section>
 
             {/* about section */}
-            <section className="min-h-screen">
+            <section id="about" className="min-h-screen">
                 <About />
             </section>
         </div>
