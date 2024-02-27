@@ -6,11 +6,9 @@ const Root = () => {
     return (
         <div className="space-y-7">
             <Header />
-            <div className="flex">
-                <VerticalNavbar />
-                <div className="flex-grow ml-[57px]">
-                    <Outlet />
-                </div>
+            <VerticalNavbar />
+            <div className="flex-grow ml-[75px]">
+                <Outlet />
             </div>
         </div>
     );

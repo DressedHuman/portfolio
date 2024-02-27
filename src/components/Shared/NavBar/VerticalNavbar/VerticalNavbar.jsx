@@ -3,8 +3,8 @@ import Nav from "./Nav";
 const VerticalNavbar = () => {
     const navLinksInfo = [
         {
-            name: 'Home',
-            pageLink: '/',
+            name: 'Skills',
+            pageLink: '/skills',
             size: 'medium',
         },
         {
