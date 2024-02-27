@@ -22,9 +22,9 @@ const Intro = () => {
 
     return (
         <div>
-            <h2 className="text-4xl font-ubuntu">
+            <h2 className="text-4xl font-open_sans text-[#dddeee]/75">
                 Hi! I&apos;m <br />
-                <span className="font-ubuntu text-5xl">Motiur Rahman Mizan,</span>
+                <span className="font-ubuntu text-5xl text-[#dddeee]">Motiur Rahman Mizan,</span>
             </h2>
             <h2 className="text-2xl font-medium font-ubuntu text-[green]">a passionate <span className="text-3xl font-medium font-ubuntu text-[goldenrod]" ref={myTitle}></span></h2>
         </div>
