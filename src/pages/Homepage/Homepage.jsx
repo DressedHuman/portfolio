@@ -4,7 +4,7 @@ import About from "../../components/About/About";
 
 const Homepage = () => {
     return (
-        <div>
+        <div className="space-y-7">
             {/* banner section */}
             <section className="flex justify-between items-center border-2 border-black pl-7 rounded-[7px_0_7px_7px]">
                 <Intro />
@@ -12,7 +12,7 @@ const Homepage = () => {
             </section>
 
             {/* about section */}
-            <section id="about" className="min-h-screen">
+            <section id="about" className="min-h-screen py-3">
                 <About />
             </section>
         </div>

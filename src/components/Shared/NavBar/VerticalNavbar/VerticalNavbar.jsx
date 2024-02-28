@@ -4,6 +4,11 @@ import Nav from "./Nav";
 const VerticalNavbar = () => {
     const navLinksInfo = [
         {
+            name: 'About',
+            sectId: 'about',
+            size: 'medium',
+        },
+        {
             name: 'Skills',
             sectId: 'skills',
             size: 'medium',
@@ -14,15 +19,15 @@ const VerticalNavbar = () => {
             size: 'medium',
         },
         {
-            name: 'About',
-            sectId: 'about',
+            name: 'Experience',
+            sectId: 'experience',
             size: 'medium',
         },
-        {
+        /* {
             name: 'Contact',
             sectId: 'contact',
             size: 'medium',
-        },
+        }, */
     ]
     return (
         <div className="fixed top-20 left-0 h-[calc(100vh-80px)] flex flex-col justify-center items-center">

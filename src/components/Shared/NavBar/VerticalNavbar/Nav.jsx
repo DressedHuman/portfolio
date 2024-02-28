@@ -6,7 +6,7 @@ const Nav = ({ text, size, onClick, params }) => { // toLink
         <div className="flex-1 group relative">
             <div className="-rotate-90 -translate-x-9 group-hover:translate-x-2 group-hover:rotate-0 fixed left-0 duration-700 text-nowrap flex translate-y-7">
                 {/* <Link to={toLink || '/'}> */}
-                <Button buttonText={text} size={size || 'medium'} onClick={onClick} onClickParams={params} />
+                <Button buttonText={text} size={size || 'medium'} onClick={onClick} onClickParams={params} borderVisibility={'transparent'} />
                 {/* </Link> */}
             </div>
         </div>
