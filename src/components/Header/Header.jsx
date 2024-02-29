@@ -15,7 +15,7 @@ const Header = () => {
                     </div>
                 </div>
                 <div className="absolute -bottom-[13px] left-0 right-0 z-[740] flex justify-between items-center">
-                    <h2 className="text-3xl font-medium ml-20 rotate-7 bg-[blue]/50 select-none" draggable='false'>Motiur Rahman Mizan</h2>
+                    <h2 className="text-2xl font-medium ml-20 rotate-7 bg-[blue]/50 select-none" draggable='false'>Motiur Rahman Mizan</h2>
                 </div>
             </div>
         </div>
