@@ -5,7 +5,7 @@ import Skills from "../../components/Skills/Skills";
 
 const Homepage = () => {
     return (
-        <div className="space-y-7">
+        <div className="space-y-28">
             {/* banner section */}
             <section className="flex justify-between items-center border-2 border-black pl-7 rounded-[7px_0_7px_7px]">
                 <Intro />

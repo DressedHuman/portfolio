@@ -10,6 +10,7 @@ export default {
         caveat: ["Caveat", 'cursive'],
         open_sans: ['Open Sans', 'sans-serif'],
         ubuntu: ['Ubuntu', 'sans-serif'],
+        ginora: ['Ginora Sans Regular'],
       }
     },
   },

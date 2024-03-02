@@ -4,14 +4,23 @@
  */
 
 export const Scroller = (id) => {
-    const elem = document.getElementById(id);
-    if (elem) {
-        const elemCoords = elem.getBoundingClientRect();
-        scrollTo({
-            top: elemCoords.y - 80,
-            left: elemCoords.x,
-            behavior: 'smooth',
-        })
+    if (id) {
+        const elem = document.getElementById(id);
+        if (elem) {
+            const elemCoords = elem.getBoundingClientRect();
+            window.scrollTo({
+                top: elemCoords.top -80,
+                left: elemCoords.bottom,
+                behavior: 'smooth',
+            })
+        }
+        else {
+            scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth',
+            })
+        }
     }
     else{
         scrollTo({

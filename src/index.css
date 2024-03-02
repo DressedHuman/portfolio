@@ -5,11 +5,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'Ginora Sans Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Ginora Sans Regular'), url('Ginóra Sans Regular.woff') format('woff');
+}
+
 
 /* hide scrollbar for edge and firefox */
 * {
-    -ms-overflow-style: none; /* edge */
-    scrollbar-width: none; /* firefox */
+    -ms-overflow-style: none;
+    /* edge */
+    scrollbar-width: none;
+    /* firefox */
 }
 
 /* hide scrollbar for chrome */

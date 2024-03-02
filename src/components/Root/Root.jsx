@@ -4,6 +4,7 @@ import VerticalNavbar from "../Shared/NavBar/VerticalNavbar/VerticalNavbar";
 import { Scroller } from "../../javascripts/Scroller/Scroller";
 import { useEffect, useState } from "react";
 import UpArrow from '/UpArrow.svg';
+import Footer from "../Footer/Footer";
 
 const Root = () => {
     const [hideScrollBtn, setHideScrollBtn] = useState(true);
@@ -24,6 +25,9 @@ const Root = () => {
             <VerticalNavbar />
             <div className="flex-grow ml-[75px]">
                 <Outlet />
+                
+                {/* footer section */}
+                <Footer />
             </div>
 
             {/* scroll to top button */}

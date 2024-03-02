@@ -7,17 +7,19 @@ const Skill = ({ skillName, skillPercent, fontSize, textColor, progressColor, bg
             className={`${width || 'w-[275px]'} flex flex-col justify-center items-center gap-2`}
         >
             {/* skill name */}
-            <p
-                className={`font-medium font-ubuntu`}
+            <div
+                className={`font-medium font-ubuntu flex-1 flex justify-center items-center`}
                 style={{ 
-                    color: `${textColor || 'text-[green]'}`,
+                    color: `${textColor ? textColor : 'text-[green]'}`,
                     fontSize: `${fontSize && fontSize || 18}px`
                  }}
-            >{skillName}</p>
+            >
+                <p>{skillName}</p>
+            </div>
 
             {/* progressbar */}
             <div
-                className={`w-full h-full flex justify-center items-center p-5 rounded-full`}
+                className={`w-full flex justify-center items-center p-5 rounded-full`}
                 style={{ backgroundColor: `${bgColor || 'rgb(55,65,81)'}` }}
             >
                 <div

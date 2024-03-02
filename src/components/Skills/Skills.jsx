@@ -7,7 +7,7 @@ const Skills = () => {
             progress: 75,
             textColor: 'green',
             fontSize: 0,
-            progressColor: 'green',
+            progressColor: '',
             bgColor: '',
         },
         {
@@ -15,22 +15,22 @@ const Skills = () => {
             progress: 70,
             textColor: 'green',
             fontSize: 0,
-            progressColor: 'green',
+            progressColor: '',
             bgColor: '',
         },
         {
             skillName: 'JavaScript',
             progress: 82,
-            textColor: '',
-            fontSize: 21,
+            textColor: 'goldenrod',
+            fontSize: 24,
             progressColor: '',
             bgColor: '',
         },
         {
             skillName: 'React',
             progress: 85,
-            textColor: '',
-            fontSize: 21,
+            textColor: 'goldenrod',
+            fontSize: 24,
             progressColor: '',
             bgColor: '',
         },
@@ -66,21 +66,29 @@ const Skills = () => {
             progressColor: 'green',
             bgColor: '',
         },
-        {
+        /* {
             skillName: 'Singing',
             progress: 75,
-            textColor: 'green',
+            textColor: 'skyblue',
             fontSize: 0,
-            progressColor: 'green',
+            progressColor: 'skyblue',
             bgColor: '',
-        }
+        } */
     ]
     return (
-        <div className="space-y-12">
+        <div className="w-[90%] mx-auto space-y-12">
             <h2 className="font-ubuntu text-3xl font-medium text-center">Skills</h2>
-            <div className="flex flex-wrap justify-center items-center gap-7">
+            <div className="grid grid-cols-4 auto-rows-max gap-7 scale-[90%]">
                 {
-                    skillsInfo.map((skillInfo, idx) => <Skill key={idx} skillName={skillInfo.skillName} skillPercent={skillInfo.progress} fontSize={skillInfo.fontSize} textColor={skillInfo.textColor} progressColor={skillInfo.progressColor} bgColor={'#dddeee27'} />)
+                    skillsInfo.map((skillInfo, idx) => <Skill
+                        key={idx}
+                        skillName={skillInfo.skillName}
+                        skillPercent={skillInfo.progress}
+                        fontSize={skillInfo.fontSize}
+                        textColor={skillInfo.textColor}
+                        progressColor={skillInfo.progressColor}
+                        bgColor={'#dddeee27'}
+                    />)
                 }
             </div>
         </div>
