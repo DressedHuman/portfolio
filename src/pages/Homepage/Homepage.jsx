@@ -2,6 +2,7 @@ import Intro from "../../components/Homepage/Intro";
 import AuthorImg from '../../assets/MotiurRahmanMizanFromBangladesh.png';
 import About from "../../components/About/About";
 import Skills from "../../components/Skills/Skills";
+import Projects from "../../components/Projects/Projects";
 
 const Homepage = () => {
     return (
@@ -20,6 +21,11 @@ const Homepage = () => {
             {/* skills section */}
             <section id="skills" className="py-3">
                 <Skills />
+            </section>
+
+            {/* projects section */}
+            <section id="projects" className="py-3">
+                <Projects />
             </section>
         </div>
     );

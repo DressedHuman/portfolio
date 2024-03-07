@@ -17,7 +17,7 @@ const About = () => {
             name: "GitHub",
             url: "https://github.com/DressedHuman",
             img: github,
-            bgColor: 'white'
+            bgColor: '#FFF5'
         },
         {
             name: 'LinkedIn',
@@ -52,18 +52,18 @@ const About = () => {
                                     <span className="w-[8px] h-[8px] rounded-[50%] bg-[green]/75"></span>
                                     {info[0]}&nbsp;&nbsp;:
                                 </span>
-                                <span className="text-xl text-[yellowgreen]/75 font-medium">{info[1]}</span>
+                                <span className="text-xl text-[green]/75 font-medium">{info[1]}</span>
                             </p>)
                         }
                     </div>
                     <div className="flex justify-center items-center gap-7">
                         {
-                            socialInfo.map((social, idx) => <div key={idx} className='w-7 h-7 '>
-                                <a href={social.url}>
+                            socialInfo.map((social, idx) => <div key={idx} className='w-10 h-11 p-1 hover:p-0 duration-300'>
+                                <a href={social.url} target='_blank'>
                                     <img
                                         src={social.img}
                                         alt={social.name}
-                                        className={`w-7 h-7 rounded-sm hover:w-8 hover:h-8 duration-300 absolute`}
+                                        className={`w-full h-full rounded`}
                                         style={{
                                             backgroundColor: `${social.bgColor || 'transparent'}`
                                         }}
