@@ -17,7 +17,7 @@ const About = () => {
             name: "GitHub",
             url: "https://github.com/DressedHuman",
             img: github,
-            bgColor: '#FFF5'
+            bgColor: ''
         },
         {
             name: 'LinkedIn',
