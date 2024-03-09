@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import github from '../../assets/icons/Github.svg';
 import arrowIcon from '../../assets/icons/arrow.svg';
 import TechnologyIcon from './TechnologyIcon';
+import Marquee from 'react-fast-marquee';
 
 const SingleProject = ({ projectName, projectType, projectDetails, projectFeatures, projectTechnologies, projectMockup, projectGithubSourceLink, projectLiveLink, }) => {
     return (
@@ -55,34 +56,38 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                         <h2 className='text-xl font-medium text-[#5D8AA8]'>Technologies Used</h2>
                     </div>
 
-                    <div className='flex justify-center items-center gap-7'>
-                        {/* Frontend technologies */}
-                        {
-                            projectTechnologies.Frontend.length > 0 && <div className='flex justify-center items-center gap-7'>
-                                {
-                                    projectTechnologies.Frontend?.map((technology, idx) => <TechnologyIcon key={idx} technology={technology} />)
-                                }
-                            </div>
-                        }
+                    <Marquee
+                        pauseOnHover
+                    >
+                        <div className='flex justify-center items-center gap-7 px-[14px]'>
+                            {/* Frontend technologies */}
+                            {
+                                projectTechnologies.Frontend.length > 0 && <div className='flex justify-center items-center gap-7'>
+                                    {
+                                        projectTechnologies.Frontend?.map((technology, idx) => <TechnologyIcon key={idx} technology={technology} />)
+                                    }
+                                </div>
+                            }
 
-                        {/* Backend technologies */}
-                        {
-                            projectTechnologies.Backend.length > 0 && <div className='flex justify-center items-center gap-7'>
-                                {
-                                    projectTechnologies.Backend?.map((technology, idx) => <TechnologyIcon key={idx} technology={technology} />)
-                                }
-                            </div>
-                        }
+                            {/* Backend technologies */}
+                            {
+                                projectTechnologies.Backend.length > 0 && <div className='flex justify-center items-center gap-7'>
+                                    {
+                                        projectTechnologies.Backend?.map((technology, idx) => <TechnologyIcon key={idx} technology={technology} />)
+                                    }
+                                </div>
+                            }
 
-                        {/* Database technologies */}
-                        {
-                            projectTechnologies.Databases.length > 0 && <div className='flex justify-center items-center gap-7'>
-                                {
-                                    projectTechnologies.Databases?.map((technology, idx) => <TechnologyIcon key={idx} technology={technology} />)
-                                }
-                            </div>
-                        }
-                    </div>
+                            {/* Database technologies */}
+                            {
+                                projectTechnologies.Databases.length > 0 && <div className='flex justify-center items-center gap-7'>
+                                    {
+                                        projectTechnologies.Databases?.map((technology, idx) => <TechnologyIcon key={idx} technology={technology} />)
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </Marquee>
                 </div>
             </div>
 
