@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import github from '../../assets/icons/Github.svg';
 import arrowIcon from '../../assets/icons/arrow.svg';
+import TechnologyIcon from './TechnologyIcon';
 
 const SingleProject = ({ projectName, projectType, projectDetails, projectFeatures, projectTechnologies, projectMockup, projectGithubSourceLink, projectLiveLink, }) => {
     return (
         <div className='grid grid-cols-2 auto-rows-max gap-7 p-2'>
-            <div className='p-5'>
+            <div className='p-1'>
                 <div className='border-b border-white/57 border-dashed pb-2 mb-3'>
                     {/* project name */}
                     <h2 className='text-2xl font-medium font-ubuntu text-[#5D8AA8]'>{projectName}</h2>
@@ -32,47 +33,54 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                 <p className='text-base font-normal font-open_sans text-slate-400 mb-3'>{projectDetails}</p>
 
                 {/* project features */}
-                <div className='flex justify-start items-center gap-3 flex-wrap mb-7'>
-                    {
-                        projectFeatures.map((feature, idx) => <div key={idx} className='flex justify-center items-center gap-2'>
-                            <div className='w-2 h-2 rounded-[50%] bg-[green]'></div>
-                            <p className='text-xl font-medium font-open_sans text-[#FF7F50]'>{feature}</p>
-                        </div>)
-                    }
+                <div className='flex justify-center items-start flex-col mb-3 text-[goldenrod]'>
+                    <div className='flex justify-start items-center gap-2'>
+                        <div className='w-3 h-3 rounded-[12%] bg-[white]'></div>
+                        <h2 className='text-xl font-medium text-[#5D8AA8]'>Key Features</h2>
+                    </div>
+                    <div className='flex justify-start items-center flex-wrap gap-2'>
+                        {
+                            projectFeatures.map((feature, idx) => <div key={idx} className='flex justify-center items-center gap-2'>
+                                <div className='w-2 h-2 rounded-[50%] bg-[green]'></div>
+                                <p className='text-lg font-medium font-open_sans'>{feature}</p>
+                            </div>)
+                        }
+                    </div>
                 </div>
 
                 {/* technologies used */}
-                <div className='flex justify-center items-center gap-7'>
-                    {/* Frontend technologies */}
-                    <div className='flex justify-center items-center gap-7'>
-                        {
-                            projectTechnologies.Frontend?.map((technology, idx) => <div key={idx}>
-                                <img src={technology?.img} className={`w-12 h-12 rounded object-contain ${technology.bgColor ? 'p-1' : ''}`} style={{
-                                    backgroundColor: technology.bgColor || 'transparent',
-                                }} alt={technology?.name} title={technology?.name} />
-                            </div>)
-                        }
+                <div className='flex justify-center items-start flex-col'>
+                    <div className='flex justify-start items-center gap-2'>
+                        <div className='w-3 h-3 rounded-[12%] bg-[white]'></div>
+                        <h2 className='text-xl font-medium text-[#5D8AA8]'>Technologies Used</h2>
                     </div>
 
-                    {/* Backend technologies */}
                     <div className='flex justify-center items-center gap-7'>
+                        {/* Frontend technologies */}
                         {
-                            projectTechnologies.Backend?.map((technology, idx) => <div key={idx}>
-                                <img src={technology?.img} alt={technology?.name} title={technology?.name} className={`w-12 h-12 rounded object-contain ${technology.bgColor ? 'p-1' : ''}`} style={{
-                                    backgroundColor: technology.bgColor || 'transparent',
-                                }} />
-                            </div>)
+                            projectTechnologies.Frontend.length > 0 && <div className='flex justify-center items-center gap-7'>
+                                {
+                                    projectTechnologies.Frontend?.map((technology, idx) => <TechnologyIcon key={idx} technology={technology} />)
+                                }
+                            </div>
                         }
-                    </div>
 
-                    {/* Database technologies */}
-                    <div className='flex justify-center items-center gap-7'>
+                        {/* Backend technologies */}
                         {
-                            projectTechnologies.Databases?.map((technology, idx) => <div key={idx}>
-                                <img src={technology?.img} alt={technology?.name} title={technology?.name} className={`w-12 h-12 rounded object-contain ${technology.bgColor ? 'p-1' : ''}`} style={{
-                                    backgroundColor: technology.bgColor || 'transparent',
-                                }} />
-                            </div>)
+                            projectTechnologies.Backend.length > 0 && <div className='flex justify-center items-center gap-7'>
+                                {
+                                    projectTechnologies.Backend?.map((technology, idx) => <TechnologyIcon key={idx} technology={technology} />)
+                                }
+                            </div>
+                        }
+
+                        {/* Database technologies */}
+                        {
+                            projectTechnologies.Databases.length > 0 && <div className='flex justify-center items-center gap-7'>
+                                {
+                                    projectTechnologies.Databases?.map((technology, idx) => <TechnologyIcon key={idx} technology={technology} />)
+                                }
+                            </div>
                         }
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 import Schooler from '../../assets/Projects/Schooler.png';
+import Portfolio from '../../assets/Projects/Portfolio.png';
 import SingleProject from './SingleProject';
 import javascript from '../../assets/icons/javascript.svg';
 import react from '../../assets/icons/react.svg';
@@ -77,6 +78,74 @@ const Projects = () => {
                 ]
             },
             mockup: Schooler,
+        },
+        {
+            name: "Motiur Rahman Mizan | Frontend Developer",
+            type: 'Portfolio Web',
+            githubLink: 'https://github.com/DressedHuman/Portfolio',
+            liveLink: 'https://mrmizan.surge.sh',
+            details: "A portfolio website that can be used for showcasing skills, projects, experience and other useful information, completely developed using reusable React components. We believe that, reusability of components can give developers the power of efficient and faster development experience.",
+            features: [
+                'Custom Cursor',
+                'Side Navbar',
+                'Button Hover Effects',
+                'Multi-sized Buttons',
+                'Go To Top Button',
+                'Showcasing Projects',
+                'Showcasing Skills',
+                'Professional Look',
+                'About Section',
+            ],
+            technologies: {
+                Frontend: [
+                    {
+                        name: 'Vanilla Javascript',
+                        img: javascript,
+                    },
+                    {
+                        name: 'React',
+                        img: react,
+                    },
+                    {
+                        name: 'React Router Dom',
+                        img: reactRouter,
+                    },
+                    {
+                        name: 'HTML5',
+                        img: html,
+                    },
+                    {
+                        name: 'CSS3',
+                        img: css,
+                    },
+                    {
+                        name: 'Tailwindcss',
+                        img: tailwindcss,
+                    },
+                ],
+                Backend: [
+                    /* {
+                        name: 'Python',
+                        img: python,
+                    },
+                    {
+                        name: 'Django',
+                        img: django,
+                    },
+                    {
+                        name: 'Django Rest Framework',
+                        img: djangoRest,
+                        bgColor: '#FFFFFF',
+                    }, */
+                ],
+                Databases: [
+                    // {
+                    //     name: 'Sqlite3',
+                    //     img: sqlite3,
+                    // },
+                ]
+            },
+            mockup: Portfolio,
         },
     ]
 
