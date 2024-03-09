@@ -57,6 +57,8 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                     </div>
 
                     <Marquee
+                        autoFill
+                        speed={35}
                         pauseOnHover
                     >
                         <div className='flex justify-center items-center gap-7 px-[14px]'>
