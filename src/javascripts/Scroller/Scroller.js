@@ -7,10 +7,8 @@ export const Scroller = (id) => {
     if (id) {
         const elem = document.getElementById(id);
         if (elem) {
-            const elemCoords = elem.getBoundingClientRect();
             window.scrollTo({
-                top: elemCoords.top -80,
-                left: elemCoords.bottom,
+                top: elem.offsetTop - 80,
                 behavior: 'smooth',
             })
         }

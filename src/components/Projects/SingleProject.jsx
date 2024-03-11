@@ -50,7 +50,7 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                 </div>
 
                 {/* technologies used */}
-                <div className='flex justify-center items-start flex-col'>
+                <div className='flex justify-center items-start flex-col gap-2'>
                     <div className='flex justify-start items-center gap-2'>
                         <div className='w-3 h-3 rounded-[12%] bg-[white]'></div>
                         <h2 className='text-xl font-medium text-[#5D8AA8]'>Technologies Used</h2>
@@ -60,6 +60,11 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                         autoFill
                         speed={35}
                         pauseOnHover
+                        style={{
+                            border: '4px solid slateblue',
+                            borderStyle: 'none solid',
+                            padding: '3px'
+                        }}
                     >
                         <div className='flex justify-center items-center gap-7 px-[14px]'>
                             {/* Frontend technologies */}
@@ -107,6 +112,7 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                             <a
                                 href={projectGithubSourceLink}
                                 className='flex flex-col justify-center items-center gap-[2px] p-2 bg-transparent hover:bg-[#E2725B] rounded-xl'
+                                target='_blank'
                             >
                                 <img src={github} className='w-11 h-11 duration-300' alt={`frontend source code link of - ${projectName}`} />
                                 <h2>Frontend</h2>
@@ -116,6 +122,7 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                             <a
                                 href={projectGithubSourceLink}
                                 className='flex flex-col justify-center items-center gap-[2px] p-2 bg-transparent hover:bg-[#E2725B] rounded-xl'
+                                target='_blank'
                             >
                                 <img src={github} className='w-11 h-11 duration-300' alt={`frontend source code link of - ${projectName}`} />
                                 <h2>Backend</h2>
@@ -125,6 +132,7 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                         <a
                             href={projectLiveLink}
                             className='flex flex-col justify-center items-center gap-[2px] p-2 bg-transparent hover:bg-[#E2725B] rounded-xl'
+                            target='_blank'
                         >
                             <img src={arrowIcon} className='w-11 h-11 -rotate-45 duration-300' alt={`frontend source code link of - ${projectName}`} />
                             <h2>Live Site</h2>
