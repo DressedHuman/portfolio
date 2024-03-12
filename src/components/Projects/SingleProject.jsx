@@ -5,7 +5,7 @@ import TechnologyIcon from './TechnologyIcon';
 import Marquee from 'react-fast-marquee';
 import BlinkingLight from '../Shared/BlinkingLight/BlinkingLight';
 
-const SingleProject = ({ projectName, projectType, projectDetails, projectFeatures, projectTechnologies, projectMockup, projectGithubSourceLink, projectLiveLink, }) => {
+const SingleProject = ({ projectName, projectType, projectDetails, projectFeatures, projectTechnologies, projectMockup, projectGithubSourceLink, projectGithubFrontendLink, projectGithubBackendLink, projectLiveLink, }) => {
     return (
         <div className='grid grid-cols-2 auto-rows-max gap-7 p-2'>
             <div className='p-1'>
@@ -111,7 +111,7 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                         <div className='flex justify-center items-center gap-5'>
                             {/* frontend */}
                             <a
-                                href={projectGithubSourceLink}
+                                href={projectGithubFrontendLink || projectGithubSourceLink}
                                 className='flex flex-col justify-center items-center gap-[2px] p-2 bg-transparent hover:bg-[green]/75 rounded-xl'
                                 target='_blank'
                             >
@@ -121,7 +121,7 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
 
                             {/* backend */}
                             <a
-                                href={projectGithubSourceLink}
+                                href={projectGithubBackendLink || projectGithubSourceLink}
                                 className='flex flex-col justify-center items-center gap-[2px] p-2 bg-transparent hover:bg-[green]/75 rounded-xl'
                                 target='_blank'
                             >
@@ -153,6 +153,8 @@ SingleProject.propTypes = {
     projectTechnologies: PropTypes.object,
     projectMockup: PropTypes.string,
     projectGithubSourceLink: PropTypes.string,
+    projectGithubFrontendLink: PropTypes.string,
+    projectGithubBackendLink: PropTypes.string,
     projectLiveLink: PropTypes.string,
 }
 
