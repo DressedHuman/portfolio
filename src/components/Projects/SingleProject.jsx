@@ -36,8 +36,8 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
 
                 {/* project features */}
                 <div className='flex justify-center items-start flex-col mb-3 text-[goldenrod]'>
-                    <div className='flex justify-start items-center gap-2'>
-                        <BlinkingLight size={21} />
+                    <div className='flex justify-start items-center gap-1'>
+                        <BlinkingLight size={21} customDivStyles={{left: '-50%'}} />
                         <h2 className='text-xl font-medium text-[#5D8AA8]'>Key Features</h2>
                     </div>
                     <div className='flex justify-start items-center flex-wrap gap-2'>
@@ -52,8 +52,8 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
 
                 {/* technologies used */}
                 <div className='flex justify-center items-start flex-col gap-2'>
-                    <div className='flex justify-start items-center gap-2'>
-                        <BlinkingLight size={21} />
+                    <div className='flex justify-start items-center gap-1'>
+                        <BlinkingLight size={21} customDivStyles={{left: '-50%'}} />
                         <h2 className='text-xl font-medium text-[#5D8AA8]'>Technologies Used</h2>
                     </div>
 
@@ -112,7 +112,7 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                             {/* frontend */}
                             <a
                                 href={projectGithubSourceLink}
-                                className='flex flex-col justify-center items-center gap-[2px] p-2 bg-transparent hover:bg-[#E2725B] rounded-xl'
+                                className='flex flex-col justify-center items-center gap-[2px] p-2 bg-transparent hover:bg-[green]/75 rounded-xl'
                                 target='_blank'
                             >
                                 <img src={github} className='w-11 h-11 duration-300' alt={`frontend source code link of - ${projectName}`} />
@@ -122,7 +122,7 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                             {/* backend */}
                             <a
                                 href={projectGithubSourceLink}
-                                className='flex flex-col justify-center items-center gap-[2px] p-2 bg-transparent hover:bg-[#E2725B] rounded-xl'
+                                className='flex flex-col justify-center items-center gap-[2px] p-2 bg-transparent hover:bg-[green]/75 rounded-xl'
                                 target='_blank'
                             >
                                 <img src={github} className='w-11 h-11 duration-300' alt={`frontend source code link of - ${projectName}`} />
@@ -132,7 +132,7 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                         {/* live link */}
                         <a
                             href={projectLiveLink}
-                            className='flex flex-col justify-center items-center gap-[2px] p-2 bg-transparent hover:bg-[#E2725B] rounded-xl'
+                            className='flex flex-col justify-center items-center gap-[2px] p-2 bg-transparent hover:bg-[green]/75 rounded-xl'
                             target='_blank'
                         >
                             <img src={arrowIcon} className='w-11 h-11 -rotate-45 duration-300' alt={`frontend source code link of - ${projectName}`} />
