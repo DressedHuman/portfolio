@@ -3,6 +3,7 @@ import github from '../../assets/icons/Github.svg';
 import arrowIcon from '../../assets/icons/arrow.svg';
 import TechnologyIcon from './TechnologyIcon';
 import Marquee from 'react-fast-marquee';
+import BlinkingLight from '../Shared/BlinkingLight/BlinkingLight';
 
 const SingleProject = ({ projectName, projectType, projectDetails, projectFeatures, projectTechnologies, projectMockup, projectGithubSourceLink, projectLiveLink, }) => {
     return (
@@ -36,7 +37,7 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                 {/* project features */}
                 <div className='flex justify-center items-start flex-col mb-3 text-[goldenrod]'>
                     <div className='flex justify-start items-center gap-2'>
-                        <div className='w-3 h-3 rounded-[12%] bg-[white]'></div>
+                        <BlinkingLight size={21} />
                         <h2 className='text-xl font-medium text-[#5D8AA8]'>Key Features</h2>
                     </div>
                     <div className='flex justify-start items-center flex-wrap gap-2'>
@@ -52,7 +53,7 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                 {/* technologies used */}
                 <div className='flex justify-center items-start flex-col gap-2'>
                     <div className='flex justify-start items-center gap-2'>
-                        <div className='w-3 h-3 rounded-[12%] bg-[white]'></div>
+                        <BlinkingLight size={21} />
                         <h2 className='text-xl font-medium text-[#5D8AA8]'>Technologies Used</h2>
                     </div>
 
