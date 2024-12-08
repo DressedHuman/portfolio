@@ -11,28 +11,32 @@ const Root = () => {
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
-            if(window.scrollX > 20 || window.scrollY > 0){
+            if (window.scrollX > 20 || window.scrollY > 0) {
                 setHideScrollBtn(false);
             }
-            else{
+            else {
                 setHideScrollBtn(true);
             }
         })
     }, [])
+
+
     return (
         <div className="space-y-7">
             <Header />
             <VerticalNavbar />
-            <div className="flex-grow ml-[75px]">
+            <div className="flex-grow lg:ml-[75px]">
                 <Outlet />
-                
+
                 {/* footer section */}
                 <Footer />
             </div>
 
             {/* scroll to top button */}
-            <button className={`fixed bottom-2 right-3 w-12 h-12 rounded-[50%] bg-black/75 text-[white] text-xl flex justify-center items-center ${hideScrollBtn && 'hidden'}`} onClick={Scroller}>
-                <img src={UpArrow} className="w-[35px] h-[35px] animate-bounce hover:animate-none" alt="&uarr;" />
+            <button className={`fixed bottom-4 right-5 backdrop-blur-md w-10 md:w-14 h-10 md:h-14 rounded-[50%] text-[white] text-xl flex justify-center items-center md:hover:-translate-y-[17%] duration-75 ${hideScrollBtn && 'hidden'}`} onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                Scroller(`body`, 1257);
+            }}>
+                <img src={UpArrow} className="w-[110%] h-[110%]" alt="&uarr;" />
             </button>
         </div>
     );

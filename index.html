@@ -8,9 +8,9 @@
   <title>Motiur Rahman Mizan</title>
 </head>
 
-<body class="bg-slate-800 text-white min-h-[100vh] lg:cursor-none" oncontextmenu="return false">
+<body class="bg-slate-800 text-white min-h-[100vh] lg:cursor-none">
   <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+  <script type="module" src="/src/main.tsx"></script>
 
   <!-- custom cursor -->
   <div id="cursor-in"
@@ -31,7 +31,7 @@
         cursorElement.style.left = `${e.clientX}px`;
       })
     })
-    
+
     // giving effects to custom cursors on mouse button down
     window.addEventListener('mousedown', (e) => {
       cursorElements[1].style.backgroundColor = '#dddeee5f';
@@ -42,6 +42,20 @@
     window.addEventListener('mouseup', (e) => {
       cursorElements[1].style.backgroundColor = 'transparent';
       cursorElements[1].style.padding = '0px';
+    })
+
+    // hide the custom cursor when mouse leaves the document
+    document.addEventListener("mouseleave", () => {
+      cursorElements.forEach(cursor => {
+        cursor.style.visibility = "hidden";
+      })
+    });
+
+    // show the custom cursor when mouse enters the document
+    document.addEventListener("mouseenter", () => {
+      cursorElements.forEach(cursor => {
+        cursor.style.visibility = "visible";
+      });
     })
   </script>
 </body>
