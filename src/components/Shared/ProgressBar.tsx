@@ -29,7 +29,7 @@ const ProgressBar = ({ label, progress, progressColor, bgColor }: Props) => {
         threshold: 0.35,
     });
 
-
+'['
     useEffect(() => {
         const progressBar = progressBarRef.current!;
         observer.observe(progressBar);
@@ -50,12 +50,12 @@ const ProgressBar = ({ label, progress, progressColor, bgColor }: Props) => {
                     ref={progressBarRef}
                     className={`absolute -top-[1px] -bottom-[1px] left-0 w-0 rounded-full duration-1000`}
                     style={{
-                        backgroundColor: `${progressColor || '#ffa500'}`,
+                        backgroundColor: `${progressColor || 'goldenrod'}`,
                     }}
                 >
                     <span
                         style={{
-                            backgroundColor: `${progressColor || '#ffa500'}`,
+                            backgroundColor: `${progressColor || 'goldenrod'}`,
                             display: progress > 0 ? "" : "none",
                         }}
                         className='absolute top-0 bottom-0 right-0 aspect-square rotate-45 rounded-sm'

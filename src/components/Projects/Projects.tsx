@@ -1,5 +1,5 @@
-import Schooler from '../../assets/Projects/Schooler.png';
-import Portfolio from '../../assets/Projects/Portfolio.png';
+import Schooler from '../../assets/Projects/Schooler.webp';
+import Portfolio from '../../assets/Projects/Portfolio.webp';
 import javascript from '../../assets/icons/javascript.svg';
 import react from '../../assets/icons/react.svg';
 import reactRouter from '../../assets/icons/react-router.svg';

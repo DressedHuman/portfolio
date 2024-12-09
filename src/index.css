@@ -9,7 +9,7 @@
     font-family: 'Ginora Sans Regular';
     font-style: normal;
     font-weight: normal;
-    src: local('Ginora Sans Regular'), url('Ginóra Sans Regular.woff') format('woff');
+    src: local('Ginora Sans Regular'), url('ginora_sans_regular.otf') format('otf');
 }
 
 

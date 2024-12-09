@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../Shared/Button";
 import MenuIcon from './menu.svg';
-import DownloadIcon from './download.svg';
+import DownloadIcon from '../../assets/download.svg';
 import { Scroller } from "../../javascripts/Scroller/Scroller";
 import { useEffect, useRef, useState } from "react";
+import { fileDownloadFunction } from "../../javascripts/Scroller/FileDownloader";
 
 export interface NavLinkType {
     name: string;
@@ -114,8 +115,9 @@ const Header = () => {
                 >
                     {/* download my resume */}
                     <button
+                        key={"my-resume"}
                         onClick={() => {
-                            window.open("/Motiur_Rahman_Mizan_Resume.pdf", "_blank");
+                            fileDownloadFunction("/Motiur_Rahman_Mizan_Resume.pdf");
                             setIsMenuOpen(false);
                         }}
                         className="w-full hover:bg-[gray] flex justify-end gap-2 p-1"
@@ -126,6 +128,7 @@ const Header = () => {
 
                     {/* hire me */}
                     <button
+                        key={"hire-me"}
                         onClick={() => {
                             nav("/hire-me");
                             setIsMenuOpen(false);
@@ -137,7 +140,8 @@ const Header = () => {
 
                     {/* nav links */}
                     {
-                        navLinksInfo.map((navLink) => <button
+                        navLinksInfo.map((navLink, idx) => <button
+                            key={idx}
                             onClick={() => navLinkClickHandler(navLink.sectId)}
                             className="w-full hover:bg-[gray] text-right p-1"
                         >
@@ -147,6 +151,7 @@ const Header = () => {
 
                     {/* my blog */}
                     <button
+                        key={"blog"}
                         onClick={() => {
                             window.open("https://howtodsa.com/", "_blank");
                             setIsMenuOpen(false);

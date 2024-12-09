@@ -3,6 +3,7 @@ import arrowIcon from '../../assets/icons/arrow.svg';
 import TechnologyIcon from './TechnologyIcon';
 import Marquee from 'react-fast-marquee';
 import BlinkingLight from '../Shared/BlinkingLight/BlinkingLight';
+import { useEffect } from 'react';
 
 export interface TechnologyType {
     img?: string;
@@ -30,16 +31,25 @@ interface Props {
 }
 
 const SingleProject = ({ projectName, projectType, projectDetails, projectFeatures, projectTechnologies, projectMockup, projectGithubSourceLink, projectGithubFrontendLink, projectGithubBackendLink, projectLiveLink }: Props) => {
+    
+    useEffect(() => {
+        const img = new Image();
+        img.src = projectMockup;
+
+        img.onload = () => console.log("image preloaded successfully");
+        img.onerror = (err) => console.error("failed to preload image", err);
+    }, []);
+
     return (
         <div className='grid grid-cols-1 lg:grid-cols-2 lg:auto-rows-max gap-7 p-2'>
             <div className='p-1'>
                 <div className='border-b border-white/57 border-dashed pb-2 mb-3'>
                     {/* project name */}
-                    <h2 className='text-lg md:text-xl lg:text-2xl font-medium font-ubuntu text-[#5D8AA8]'>{projectName}</h2>
+                    <h2 className='text-lg md:text-xl lg:text-2xl font-medium font-ubuntu text-[#3ca8f0]'>{projectName}</h2>
 
                     <div className='flex justify-start items-center gap-7'>
                         {/* project type */}
-                        <p className='text-base font-normal text-[green]'>{projectType}</p>
+                        <p className='text-base font-normal text-[greenyellow]'>{projectType}</p>
 
                         {/* project links */}
                         <div className='flex justify-center items-center gap-3 relative'>
@@ -62,7 +72,7 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                 <div className='flex justify-center items-start flex-col mb-3 text-[goldenrod]'>
                     <div className='flex justify-start items-center gap-1'>
                         <BlinkingLight size={21} customDivStyles={{ left: '-50%' }} />
-                        <h2 className='text-[17px] lg:text-xl font-medium text-[#5D8AA8]'>Key Features</h2>
+                        <h2 className='text-[17px] lg:text-xl font-medium text-[#3ca8f0]'>Key Features</h2>
                     </div>
                     <div className='flex justify-start items-center flex-wrap gap-2'>
                         {
@@ -81,7 +91,7 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                 <div className='flex justify-center items-start flex-col gap-2'>
                     <div className='flex justify-start items-center gap-1'>
                         <BlinkingLight size={21} customDivStyles={{ left: '-50%' }} />
-                        <h2 className='text-[17px] md:text-lg lg:text-xl font-medium text-[#5D8AA8]'>Technologies Used</h2>
+                        <h2 className='text-[17px] md:text-lg lg:text-xl font-medium text-[#3ca8f0]'>Technologies Used</h2>
                     </div>
 
                     <Marquee
@@ -89,9 +99,11 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
                         speed={35}
                         pauseOnHover
                         style={{
-                            border: '4px solid slateblue',
+                            borderLeft: '4px solid slateblue',
+                            borderRight: '4px solid slateblue',
                             borderStyle: 'none solid',
-                            padding: '3px'
+                            paddingTop: '5px',
+                            paddingBottom: '5px',
                         }}
                     >
                         <div className='flex justify-center items-center gap-3 md:gap-5 lg:gap-7 px-[6px] md:px-[10px] lg:px-[14px]'>
