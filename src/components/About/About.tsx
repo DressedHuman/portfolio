@@ -63,7 +63,7 @@ const About = () => {
                         {/* hire me button */}
                         <Link
                             to={"/hire-me"}
-                            className='px-2 py-1 border-2 border-red-700 text-lg text-white font-medium font-mono hover:scale-105 rounded-md'
+                            className='px-2 hover:px-3 py-1 border-2 border-red-700 text-lg text-white font-medium font-mono hover:scale-105 rounded-md duration-300'
                         >
                             Hire Me
                         </Link>

@@ -4,7 +4,7 @@ import MenuIcon from './menu.svg';
 import DownloadIcon from '../../assets/download.svg';
 import { Scroller } from "../../javascripts/Scroller/Scroller";
 import { useEffect, useRef, useState } from "react";
-import { fileDownloadFunction } from "../../javascripts/Scroller/FileDownloader";
+import { fileDownloadFunction } from "../../javascripts/FileDownloader/FileDownloader";
 
 export interface NavLinkType {
     name: string;

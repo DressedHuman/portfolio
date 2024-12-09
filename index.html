@@ -30,26 +30,26 @@
       cursorElements.forEach(cursorElement => {
         cursorElement.style.top = `${e.clientY}px`;
         cursorElement.style.left = `${e.clientX}px`;
-      })
-    })
+      });
+    });
 
     // giving effects to custom cursors on mouse button down
     window.addEventListener('mousedown', (e) => {
       cursorElements[1].style.backgroundColor = '#dddeee5f';
-      cursorElements[1].style.padding = '1.25vw'
-    })
+      cursorElements[1].style.padding = '1.25vw';
+    });
 
     // normalize custom cursors on mouse button up
     window.addEventListener('mouseup', (e) => {
       cursorElements[1].style.backgroundColor = 'transparent';
       cursorElements[1].style.padding = '0px';
-    })
+    });
 
     // hide the custom cursor when mouse leaves the document
     document.addEventListener("mouseleave", () => {
       cursorElements.forEach(cursor => {
         cursor.style.visibility = "hidden";
-      })
+      });
     });
 
     // show the custom cursor when mouse enters the document
@@ -57,7 +57,9 @@
       cursorElements.forEach(cursor => {
         cursor.style.visibility = "visible";
       });
-    })
+    });
+
+    document.addEventListener("mous")
   </script>
 </body>
 

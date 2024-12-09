@@ -1,5 +1,5 @@
 import DownloadIcon from '../../assets/download.svg';
-import { fileDownloadFunction } from "../../javascripts/Scroller/FileDownloader";
+import { fileDownloadFunction } from "../../javascripts/FileDownloader/FileDownloader";
 
 interface Props {
     resumeFilePath: string;
