@@ -28,11 +28,11 @@ export const navLinksInfo: NavLinkType[] = [
         sectId: '#projects',
         size: 'medium',
     },
-    {
+    /* {
         name: 'Experience',
         sectId: '#experience',
         size: 'medium',
-    },
+    }, */
     /* {
         name: 'Contact',
         sectId: '#contact',
@@ -45,7 +45,10 @@ const Header = () => {
     const menuRef = useRef<HTMLDivElement>(null);
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-    const navLinkClickHandler = (sectId: string) => {
+    const navLinkClickHandler = async (sectId: string) => {
+        if(window.location.origin+"/" !== window.location.href){
+            await nav("/");
+        }
         Scroller(sectId, 1257);
         setIsMenuOpen(false);
     }
@@ -76,8 +79,8 @@ const Header = () => {
                     <>
                         {/* for desktop view only */}
                         <div className="hidden lg:flex justify-center items-center gap-7">
-                            <Button buttonText={'Hire Me'} size={'medium'} borderVisibility={'semiTransparent'} negate onClick={nav} onClickParams={['/hire-me']} />
-                            <Button buttonText={'Blog'} size={'small'} borderVisibility={'semiTransparent'} onClick={(url: string) => window.open(url, "_blank")} onClickParams={["https://howtodsa.com/"]} />
+                            <Button label={'Hire Me'} size={'medium'} borderVisibility={'semiTransparent'} negate onClick={nav} onClickParams={['/hire-me']} />
+                            <Button label={'Blog'} size={'small'} borderVisibility={'semiTransparent'} onClick={(url: string) => window.open(url, "_blank")} onClickParams={["https://howtodsa.com/"]} />
                         </div>
 
                         {/* for mobile and tablet views */}

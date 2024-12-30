@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import Typed from "typed.js";
 import './TypedCursor.css';
 import ResumeDownloadButton from "../Shared/ResumeDownloadButton";
+import EmailMe from "../Shared/EmailMe";
 
 const Intro = () => {
     const myTitle = useRef<HTMLSpanElement | null>(null);
@@ -30,7 +31,10 @@ const Intro = () => {
                 <br />
                 <span className="text-lg md:text-xl lg:text-2xl font-medium font-ubuntu text-[greenyellow]">a passionate <span className="text-xl md:text-2xl lg:text-3xl font-medium text-[goldenrod]" ref={myTitle}></span></span>
             </h2>
-            <ResumeDownloadButton resumeFilePath="" resumeDownloadName="" />
+            <div className="flex justify-start items-center gap-3">
+                <ResumeDownloadButton resumeFilePath="" resumeDownloadName="" />
+                <EmailMe email="motiur.rahman.mizan@gmail.com" />
+            </div>
         </div>
     );
 };

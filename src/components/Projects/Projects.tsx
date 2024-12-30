@@ -1,7 +1,10 @@
+import VocabStar from '../../assets/Projects/VocabStar.webp';
 import Schooler from '../../assets/Projects/Schooler.webp';
 import Portfolio from '../../assets/Projects/Portfolio.webp';
 import javascript from '../../assets/icons/javascript.svg';
+import typescript from '../../assets/icons/typescript.svg';
 import react from '../../assets/icons/react.svg';
+import redux from '../../assets/icons/redux.svg';
 import reactRouter from '../../assets/icons/react-router.svg';
 import html from '../../assets/icons/HTML5.svg';
 import css from '../../assets/icons/CSS3.svg';
@@ -32,6 +35,85 @@ const SingleProject = lazy(() => import('./SingleProject'));
 
 const Projects = () => {
     const projectsInfo: ProjectInfo[] = [
+        {
+            name: "VocabStar | Learn to Never Forget",
+            type: 'Vocabulary Learning System',
+            githubLink: 'https://github.com/DressedHuman/VocabStar',
+            githubFrontendLink: 'https://github.com/DressedHuman/VocabStar/tree/client',
+            githubBackendLink: 'https://github.com/DressedHuman/VocabStar/tree/backend',
+            liveLink: 'https://vocab-star.vercel.app',
+            details: "A full-stack web app to learn, memorize and test English to Bengali vocabularies or vice-versa. Developed with TypeScript, ReactJS and ReduxJS for frontend and Django and Django REST Framework for backend.",
+            features: [
+                'Authentication',
+                'Add word with meanings',
+                'Check a vocab',
+                'View saved vocabs',
+                "Play pronunciation of words",
+                'Delete a vocab',
+                'Take vocabulary MCQ test',
+                'Set MCQ counts',
+                'Set duration',
+                'Set from-recent-only',
+                'Detailed result'
+            ],
+            technologies: {
+                Frontend: [
+                    {
+                        name: 'Javascript',
+                        img: javascript,
+                    },
+                    {
+                        name: "TypeScript",
+                        img: typescript,
+                    },
+                    {
+                        name: 'React',
+                        img: react,
+                    },{
+                        name: "Redux",
+                        img: redux,
+                    },
+                    {
+                        name: 'React Router Dom',
+                        img: reactRouter,
+                    },
+                    {
+                        name: 'HTML5',
+                        img: html,
+                    },
+                    {
+                        name: 'CSS3',
+                        img: css,
+                    },
+                    {
+                        name: 'Tailwindcss',
+                        img: tailwindcss,
+                    },
+                ],
+                Backend: [
+                    {
+                        name: 'Python',
+                        img: python,
+                    },
+                    {
+                        name: 'Django',
+                        img: django,
+                    },
+                    {
+                        name: 'Django Rest Framework',
+                        img: djangoRest,
+                        bgColor: '#FFFFFF',
+                    },
+                ],
+                Databases: [
+                    {
+                        name: 'Sqlite3',
+                        img: sqlite3,
+                    },
+                ]
+            },
+            mockup: VocabStar,
+        },
         {
             name: "Schooler | Let's School from Online",
             type: 'School Management System',

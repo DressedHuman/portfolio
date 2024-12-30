@@ -42,7 +42,7 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
 
     return (
         <div className='grid grid-cols-1 lg:grid-cols-2 lg:auto-rows-max gap-7 p-2'>
-            <div className='p-1'>
+            <div className='order-2 lg:order-1 p-1'>
                 <div className='border-b border-white/57 border-dashed pb-2 mb-3'>
                     {/* project name */}
                     <h2 className='text-lg md:text-xl lg:text-2xl font-medium font-ubuntu text-[#3ca8f0]'>{projectName}</h2>
@@ -139,7 +139,7 @@ const SingleProject = ({ projectName, projectType, projectDetails, projectFeatur
             </div>
 
             {/* project mockup image */}
-            <div className='w-full aspect-[16/9] lg:aspect-auto lg:h-full border-[5px] border-[green] rounded-lg relative overflow-scroll'>
+            <div className='order-1 lg:order-2 w-full aspect-[16/9] lg:aspect-auto lg:h-full border-[5px] border-[green] rounded-lg relative overflow-scroll'>
                 {/* actual mockup image of project */}
                 <img src={projectMockup} loading='lazy' className='absolute top-0 left-0 w-full h-full object-cover rounded' alt={projectName} draggable='true' />
 

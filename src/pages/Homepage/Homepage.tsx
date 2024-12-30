@@ -19,7 +19,7 @@ const Homepage = () => {
             {/* banner section */}
             <section className="flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-4 border-2 border-black px-3 md:px-0 md:pl-7 pt-3 md:pt-0 rounded-[7px_0_7px_7px]">
                 <Intro />
-                <img src={AuthorImg} alt="Motiur Rahman Mizan from Bangladesh" className="w-[100%] md:w-auto md:h-[457px] lg:h-[570px] grayscale-[57%] select-none" />
+                <img src={AuthorImg} alt="Motiur Rahman Mizan from Bangladesh" className="w-[100%] md:w-auto md:h-[457px] lg:h-[570px] grayscale-[57%]" />
             </section>
 
             {/* about section */}

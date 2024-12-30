@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
 import Header from "../Header/Header";
-import VerticalNavbar from "../Shared/NavBar/VerticalNavbar/VerticalNavbar";
 import { Scroller } from "../../javascripts/Scroller/Scroller";
 import { useEffect, useState } from "react";
 import UpArrow from '/UpArrow.svg';
 import Footer from "../Footer/Footer";
+import VerticalNavbar from "../Shared/NavBar/VerticalNavbar/VerticalNavbar";
+import { Slide, ToastContainer } from "react-toastify";
 
 const Root = () => {
     const [hideScrollBtn, setHideScrollBtn] = useState(true);
@@ -38,6 +39,17 @@ const Root = () => {
             }}>
                 <img src={UpArrow} className="w-[110%] h-[110%]" alt="&uarr;" />
             </button>
+
+            <div className="absolute">
+                <ToastContainer
+                    position="top-right"
+                    autoClose={3500}
+                    newestOnTop={false}
+                    transition={Slide}
+                    pauseOnFocusLoss={false}
+                    pauseOnHover
+                />
+            </div>
         </div>
     );
 };
