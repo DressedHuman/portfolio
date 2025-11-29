@@ -1,5 +1,4 @@
 import { AiFillGithub, AiOutlineLink } from 'react-icons/ai';
-import TechnologyIcon from './TechnologyIcon';
 
 export interface TechnologyType {
     img?: string;
