@@ -50,14 +50,33 @@ const ProjectsManager = () => {
 
     const handleToggleActive = async (project: Project) => {
         try {
+            // Fetch full project data first
+            const fullProject = await projectsAPI.getOne(project.id);
+
+            // Create FormData with all required fields
             const formData = new FormData();
-            formData.append('name', project.name);
-            formData.append('type', project.type);
-            formData.append('description', '');
-            formData.append('github_link', '');
-            formData.append('live_link', '');
+            formData.append('name', fullProject.name);
+            formData.append('type', fullProject.type);
+            formData.append('description', fullProject.description);
+            formData.append('github_link', fullProject.github_link);
+            formData.append('github_frontend_link', fullProject.github_frontend_link || '');
+            formData.append('github_backend_link', fullProject.github_backend_link || '');
+            formData.append('live_link', fullProject.live_link);
+            formData.append('display_order', fullProject.display_order.toString());
             formData.append('is_active', (!project.is_active).toString());
-            formData.append('display_order', project.display_order.toString());
+
+            // Add features
+            const features = fullProject.features.map((f: any) => f.feature_text);
+            formData.append('features', JSON.stringify(features));
+
+            // Add technologies
+            const technologies: any = { Frontend: [], Backend: [], Databases: [] };
+            fullProject.project_technologies.forEach((pt: any) => {
+                if (technologies[pt.category]) {
+                    technologies[pt.category].push(pt.technology.id);
+                }
+            });
+            formData.append('technologies', JSON.stringify(technologies));
 
             await projectsAPI.update(project.id, formData);
             toast.success(`Project ${!project.is_active ? 'activated' : 'deactivated'}`);
@@ -117,8 +136,8 @@ const ProjectsManager = () => {
                             <div className="absolute top-2 right-2">
                                 <span
                                     className={`px-3 py-1 rounded-full text-xs font-semibold ${project.is_active
-                                            ? 'bg-green-600 text-white'
-                                            : 'bg-gray-600 text-gray-300'
+                                        ? 'bg-green-600 text-white'
+                                        : 'bg-gray-600 text-gray-300'
                                         }`}
                                 >
                                     {project.is_active ? 'Active' : 'Inactive'}
