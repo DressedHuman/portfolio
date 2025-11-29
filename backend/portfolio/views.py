@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from .models import About, ContactMessage, Technology, Project
 from .serializers import (
     AboutSerializer, ContactMessageSerializer,
-    TechnologySerializer, ProjectSerializer
+    TechnologySerializer, ProjectSerializer, ProjectCreateUpdateSerializer
 )
 
 
@@ -74,13 +74,18 @@ class TechnologyViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class ProjectViewSet(viewsets.ModelViewSet):
-    serializer_class = ProjectSerializer
     
     def get_queryset(self):
         # Public users see only active projects
         if self.request.user.is_staff:
             return Project.objects.all().order_by('display_order', '-created_at')
         return Project.objects.filter(is_active=True).order_by('display_order', '-created_at')
+    
+    def get_serializer_class(self):
+        # Use different serializers for read and write
+        if self.action in ['create', 'update', 'partial_update']:
+            return ProjectCreateUpdateSerializer
+        return ProjectSerializer
     
     def get_permissions(self):
         # Public read, admin-only for write

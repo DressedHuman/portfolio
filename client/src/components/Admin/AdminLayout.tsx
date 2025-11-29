@@ -46,6 +46,12 @@ const AdminLayout = () => {
                             About Editor
                         </Link>
                         <Link
+                            to="/admin/projects"
+                            className="px-3 py-4 text-gray-300 hover:text-white border-b-2 border-transparent hover:border-green-500 transition"
+                        >
+                            Projects
+                        </Link>
+                        <Link
                             to="/admin/messages"
                             className="px-3 py-4 text-gray-300 hover:text-white border-b-2 border-transparent hover:border-green-500 transition"
                         >

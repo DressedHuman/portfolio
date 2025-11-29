@@ -16,6 +16,8 @@ const Login = lazy(() => import('./pages/Admin/Login'));
 const AdminDashboard = lazy(() => import('./pages/Admin/AdminDashboard'));
 const AboutEditor = lazy(() => import('./pages/Admin/AboutEditor'));
 const MessagesViewer = lazy(() => import('./pages/Admin/MessagesViewer'));
+const ProjectsManager = lazy(() => import('./pages/Admin/ProjectsManager'));
+const ProjectEditor = lazy(() => import('./pages/Admin/ProjectEditor'));
 
 const routes = createBrowserRouter([
   {
@@ -78,6 +80,30 @@ const routes = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <MessagesViewer />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'projects',
+        element: (
+          <Suspense fallback={<Loader />}>
+            <ProjectsManager />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'projects/new',
+        element: (
+          <Suspense fallback={<Loader />}>
+            <ProjectEditor />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'projects/:id/edit',
+        element: (
+          <Suspense fallback={<Loader />}>
+            <ProjectEditor />
           </Suspense>
         ),
       },

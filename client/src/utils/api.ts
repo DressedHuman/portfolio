@@ -98,4 +98,46 @@ export const messagesAPI = {
     },
 };
 
+export const projectsAPI = {
+    getAll: async () => {
+        const response = await api.get('/api/projects/');
+        return response.data;
+    },
+
+    getOne: async (id: number) => {
+        const response = await api.get(`/api/projects/${id}/`);
+        return response.data;
+    },
+
+    create: async (data: FormData) => {
+        const response = await api.post('/api/projects/', data, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return response.data;
+    },
+
+    update: async (id: number, data: FormData) => {
+        const response = await api.put(`/api/projects/${id}/`, data, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return response.data;
+    },
+
+    delete: async (id: number) => {
+        const response = await api.delete(`/api/projects/${id}/`);
+        return response.data;
+    },
+};
+
+export const technologiesAPI = {
+    getAll: async () => {
+        const response = await api.get('/api/technologies/');
+        return response.data;
+    },
+};
+
 export default api;

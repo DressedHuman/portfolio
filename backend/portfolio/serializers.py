@@ -85,3 +85,93 @@ class ProjectSerializer(serializers.ModelSerializer):
             if pt.category in tech_dict:
                 tech_dict[pt.category].append(tech_data)
         return tech_dict
+
+
+class ProjectCreateUpdateSerializer(serializers.ModelSerializer):
+    features = serializers.ListField(
+        child=serializers.CharField(max_length=200),
+        write_only=True,
+        required=False
+    )
+    technologies = serializers.DictField(
+        child=serializers.ListField(child=serializers.IntegerField()),
+        write_only=True,
+        required=False
+    )
+    
+    class Meta:
+        model = Project
+        fields = [
+            'id', 'name', 'type', 'description',
+            'github_link', 'github_frontend_link', 'github_backend_link', 'live_link',
+            'mockup_image', 'is_active', 'display_order',
+            'features', 'technologies',
+        ]
+        read_only_fields = ['id']
+    
+    def create(self, validated_data):
+        features_data = validated_data.pop('features', [])
+        technologies_data = validated_data.pop('technologies', {})
+        
+        project = Project.objects.create(**validated_data)
+        
+        # Create features
+        for idx, feature_text in enumerate(features_data):
+            ProjectFeature.objects.create(
+                project=project,
+                feature_text=feature_text,
+                order=idx
+            )
+        
+        # Create technology associations
+        for category, tech_ids in technologies_data.items():
+            for idx, tech_id in enumerate(tech_ids):
+                try:
+                    technology = Technology.objects.get(id=tech_id)
+                    ProjectTechnology.objects.create(
+                        project=project,
+                        technology=technology,
+                        category=category,
+                        order=idx
+                    )
+                except Technology.DoesNotExist:
+                    pass
+        
+        return project
+    
+    def update(self, instance, validated_data):
+        features_data = validated_data.pop('features', None)
+        technologies_data = validated_data.pop('technologies', None)
+        
+        # Update project fields
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+        
+        # Update features if provided
+        if features_data is not None:
+            instance.features.all().delete()
+            for idx, feature_text in enumerate(features_data):
+                ProjectFeature.objects.create(
+                    project=instance,
+                    feature_text=feature_text,
+                    order=idx
+                )
+        
+        # Update technologies if provided
+        if technologies_data is not None:
+            instance.project_technologies.all().delete()
+            for category, tech_ids in technologies_data.items():
+                for idx, tech_id in enumerate(tech_ids):
+                    try:
+                        technology = Technology.objects.get(id=tech_id)
+                        ProjectTechnology.objects.create(
+                            project=instance,
+                            technology=technology,
+                            category=category,
+                            order=idx
+                        )
+                    except Technology.DoesNotExist:
+                        pass
+        
+        return instance
