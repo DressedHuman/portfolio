@@ -111,50 +111,40 @@ const About = () => {
             <h2 className="font-ubuntu text-xl md:text-2xl lg:text-3xl font-medium text-center">About Me</h2>
             <div className="grid grid-cols-1 md:grid-cols-7 lg:grid-cols-5 auto-rows-max mt-3 md:mt-5 lg:mt-12">
                 <div className='md:col-span-4 lg:col-span-3 px-3 md:px-5 lg:px-7 flex-1 flex flex-col justify-center items-start gap-3'>
-                    {/* bio table */}
                     <div className='w-full overflow-x-auto'>
                         <table className="text-lg lg:text-xl">
                             <tbody>
-                                {
-                                    aboutInfo.map((info, idx) => <tr
-                                        key={idx}
-                                    >
+                                {aboutInfo.map((info, idx) => (
+                                    <tr key={idx}>
                                         <td className="text-[forestgreen]">&#9679;&nbsp;</td>
                                         <td>{info[0]}</td>
                                         <td>&nbsp;&nbsp;:&nbsp;&nbsp;</td>
                                         <td className="text-[greenyellow] font-medium">{info[1]}</td>
-                                    </tr>)
-                                }
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
 
-                    {/* contact links */}
                     <div className="hidden lg:flex justify-center items-center gap-7">
-                        {
-                            socialInfo.map((social, idx) => <div key={idx} className='w-10 h-11 p-1 hover:p-0 duration-300'>
-                                <a href={social.url} target='_blank'>
+                        {socialInfo.map((social, idx) => (
+                            <div key={idx} className='w-10 h-11 p-1 hover:p-0 duration-300'>
+                                <a href={social.url} target='_blank' rel="noopener noreferrer">
                                     <img
                                         src={social.img}
                                         alt={social.name}
-                                        className={`w-full h-full rounded`}
-                                        style={{
-                                            backgroundColor: `${social.bgColor || 'transparent'}`
-                                        }}
+                                        className='w-full h-full rounded'
+                                        style={{ backgroundColor: social.bgColor || 'transparent' }}
                                     />
                                 </a>
-                            </div>)
-                        }
+                            </div>
+                        ))}
                     </div>
 
-
-                    {/* my brief message */}
                     <p className="font-open_sans text-[#dddeee] text-justify first-letter:text-2xl first-letter:text-[magenta]">
                         {aboutData.bio}
                     </p>
 
-
-                    {/* hire-me and resume download buttons */}
                     <div className='hidden lg:flex flex-wrap justify-center items-center gap-x-3 gap-y-1'>
                         {/* hire me button */}
                         <Link

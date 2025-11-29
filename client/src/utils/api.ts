@@ -2,7 +2,6 @@ import axios, { AxiosInstance } from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
-// Create axios instance
 const api: AxiosInstance = axios.create({
     baseURL: API_URL,
     headers: {
@@ -10,7 +9,7 @@ const api: AxiosInstance = axios.create({
     },
 });
 
-// Add auth token to requests
+// Inject auth token into requests
 api.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('access_token');
@@ -22,7 +21,7 @@ api.interceptors.request.use(
     (error) => Promise.reject(error)
 );
 
-// Handle token refresh on 401
+// Auto-refresh token on 401
 api.interceptors.response.use(
     (response) => response,
     async (error) => {
@@ -54,7 +53,6 @@ api.interceptors.response.use(
     }
 );
 
-// Auth API
 export const authAPI = {
     login: async (username: string, password: string) => {
         const response = await axios.post(`${API_URL}/api/token/`, {
@@ -70,7 +68,6 @@ export const authAPI = {
     },
 };
 
-// About API
 export const aboutAPI = {
     get: async () => {
         const response = await api.get('/api/about/');
@@ -87,7 +84,6 @@ export const aboutAPI = {
     },
 };
 
-// Messages API
 export const messagesAPI = {
     getAll: async () => {
         const response = await api.get('/api/messages/');

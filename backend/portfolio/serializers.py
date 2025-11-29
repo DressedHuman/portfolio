@@ -3,49 +3,26 @@ from .models import About, ContactMessage
 
 
 class AboutSerializer(serializers.ModelSerializer):
-    """Serializer for About model"""
-    
     class Meta:
         model = About
         fields = [
-            'id',
-            'name',
-            'title',
-            'address',
-            'email',
-            'phone',
-            'bio',
-            'github_url',
-            'linkedin_url',
-            'facebook_url',
-            'twitter_url',
-            'profile_image',
-            'created_at',
-            'updated_at',
+            'id', 'name', 'title', 'address', 'email', 'phone', 'bio',
+            'github_url', 'linkedin_url', 'facebook_url', 'twitter_url',
+            'profile_image', 'created_at', 'updated_at',
         ]
         read_only_fields = ['id', 'created_at', 'updated_at']
 
 
 class ContactMessageSerializer(serializers.ModelSerializer):
-    """Serializer for ContactMessage model"""
-    
     class Meta:
         model = ContactMessage
         fields = [
-            'id',
-            'name',
-            'email',
-            'phone',
-            'address',
-            'priority',
-            'description',
-            'is_read',
-            'created_at',
+            'id', 'name', 'email', 'phone', 'address', 'priority',
+            'description', 'is_read', 'created_at',
         ]
         read_only_fields = ['id', 'created_at']
     
     def validate_priority(self, value):
-        """Validate priority field"""
         valid_priorities = ['Low', 'Medium', 'High']
         if value not in valid_priorities:
             raise serializers.ValidationError(

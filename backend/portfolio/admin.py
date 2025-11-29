@@ -4,7 +4,6 @@ from .models import About, ContactMessage
 
 @admin.register(About)
 class AboutAdmin(admin.ModelAdmin):
-    """Custom admin for About model"""
     list_display = ['name', 'title', 'email', 'is_active', 'updated_at']
     list_filter = ['is_active', 'created_at']
     search_fields = ['name', 'title', 'email']
@@ -36,7 +35,6 @@ class AboutAdmin(admin.ModelAdmin):
 
 @admin.register(ContactMessage)
 class ContactMessageAdmin(admin.ModelAdmin):
-    """Custom admin for ContactMessage model"""
     list_display = ['name', 'email', 'priority', 'is_read', 'created_at']
     list_filter = ['priority', 'is_read', 'created_at']
     search_fields = ['name', 'email', 'phone', 'description']
@@ -57,9 +55,4 @@ class ContactMessageAdmin(admin.ModelAdmin):
     )
     
     def has_add_permission(self, request):
-        """Disable adding messages through admin (they come from frontend)"""
-        return False
-    
-    def has_delete_permission(self, request, obj=None):
-        """Allow deleting messages"""
-        return True
+        return False  # Messages come from frontend only

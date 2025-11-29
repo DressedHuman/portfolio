@@ -7,18 +7,11 @@ from .serializers import AboutSerializer, ContactMessageSerializer
 
 
 class AboutViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet for About model
-    GET /api/about/ - Returns the active About record (public)
-    PUT/PATCH /api/about/{id}/ - Update About record (authenticated)
-    """
     queryset = About.objects.filter(is_active=True)
     serializer_class = AboutSerializer
     
     def get_permissions(self):
-        """
-        Public read access, authenticated write access
-        """
+        # Public read, authenticated write
         if self.action in ['list', 'retrieve']:
             permission_classes = [AllowAny]
         else:
@@ -26,7 +19,6 @@ class AboutViewSet(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
     
     def list(self, request, *args, **kwargs):
-        """Return the active About record"""
         try:
             about = About.objects.get(is_active=True)
             serializer = self.get_serializer(about)
@@ -39,19 +31,11 @@ class AboutViewSet(viewsets.ModelViewSet):
 
 
 class ContactMessageViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet for ContactMessage model
-    POST /api/receive_message/ - Create a new contact message (public)
-    GET /api/messages/ - List all messages (admin only)
-    PATCH /api/messages/{id}/ - Update message (mark as read, admin only)
-    """
     queryset = ContactMessage.objects.all().order_by('-created_at')
     serializer_class = ContactMessageSerializer
     
     def get_permissions(self):
-        """
-        Public create access, admin-only for list/update
-        """
+        # Public create, admin-only for list/update
         if self.action == 'create':
             permission_classes = [AllowAny]
         else:
@@ -59,7 +43,6 @@ class ContactMessageViewSet(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
     
     def create(self, request, *args, **kwargs):
-        """Create a new contact message"""
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
@@ -74,7 +57,6 @@ class ContactMessageViewSet(viewsets.ModelViewSet):
     
     @action(detail=True, methods=['patch'], permission_classes=[IsAdminUser])
     def mark_read(self, request, pk=None):
-        """Mark a message as read"""
         message = self.get_object()
         message.is_read = request.data.get('is_read', True)
         message.save()

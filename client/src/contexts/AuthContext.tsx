@@ -15,7 +15,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Check if user is already logged in
         const token = localStorage.getItem('access_token');
         if (token) {
             setIsAuthenticated(true);
@@ -24,14 +23,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }, []);
 
     const login = async (username: string, password: string) => {
-        try {
-            const data = await authAPI.login(username, password);
-            localStorage.setItem('access_token', data.access);
-            localStorage.setItem('refresh_token', data.refresh);
-            setIsAuthenticated(true);
-        } catch (error) {
-            throw error;
-        }
+        const data = await authAPI.login(username, password);
+        localStorage.setItem('access_token', data.access);
+        localStorage.setItem('refresh_token', data.refresh);
+        setIsAuthenticated(true);
     };
 
     const logout = () => {

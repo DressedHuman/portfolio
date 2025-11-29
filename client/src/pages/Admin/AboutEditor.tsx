@@ -69,7 +69,6 @@ const AboutEditor = () => {
         try {
             const submitData = new FormData();
 
-            // Add form fields to FormData
             (Object.keys(formData) as Array<keyof AboutData>).forEach((key) => {
                 if (key !== 'id' && key !== 'profile_image') {
                     const value = formData[key];
