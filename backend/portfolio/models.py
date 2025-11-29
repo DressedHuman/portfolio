@@ -98,7 +98,7 @@ class Project(models.Model):
     live_link = models.URLField(help_text="Live demo link")
     
     # Image
-    mockup_image = models.ImageField(upload_to='projects/', help_text="Project mockup/screenshot")
+    mockup_image = models.ImageField(upload_to='projects/', blank=True, null=True, help_text="Project mockup/screenshot")
     
     # Metadata
     is_active = models.BooleanField(default=True, help_text="Show on frontend")

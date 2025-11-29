@@ -88,16 +88,8 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 
 class ProjectCreateUpdateSerializer(serializers.ModelSerializer):
-    features = serializers.ListField(
-        child=serializers.CharField(max_length=200),
-        write_only=True,
-        required=False
-    )
-    technologies = serializers.DictField(
-        child=serializers.ListField(child=serializers.IntegerField()),
-        write_only=True,
-        required=False
-    )
+    features = serializers.JSONField(write_only=True, required=False)
+    technologies = serializers.JSONField(write_only=True, required=False)
     
     class Meta:
         model = Project
@@ -108,6 +100,9 @@ class ProjectCreateUpdateSerializer(serializers.ModelSerializer):
             'features', 'technologies',
         ]
         read_only_fields = ['id']
+        extra_kwargs = {
+            'mockup_image': {'required': False},
+        }
     
     def create(self, validated_data):
         features_data = validated_data.pop('features', [])
