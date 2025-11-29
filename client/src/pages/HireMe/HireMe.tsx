@@ -1,52 +1,67 @@
 import HireMeForm from "../../components/Shared/FormComponents/HireMeForm";
-import AuthorImg from '../../assets/MotiurRahmanMizanFromBangladesh.webp';
-import PhoneIcon from './icons/phone.svg';
-import EmailIcon from './icons/email.svg';
+import { AiOutlineMail, AiOutlinePhone, AiOutlineEnvironment } from 'react-icons/ai';
 
 const HireMe = () => {
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 auto-rows-max gap-7">
-            {/* hire me form here */}
-            <div className="w-full px-[10%]">
-                <HireMeForm />
-            </div>
-
-            {/* contact details */}
-            <div className="flex flex-col justify-center items-start gap-1 md:gap-2 lg:gap-3 px-[10%]">
-                <h2 className="font-mono text-[dodgerblue] lg:text-lg font-medium pl-2 mb-4 border-l-4 border-green-700 flex justify-start items-start italic">Thanks for hiring me!<br />It&apos;s my duty to provide you with more than you desire.</h2>
-                <div
-                    className="bg-[#1b6485] p-3 space-y-2"
-                >
-                    {/* phone number */}
-                    <div
-                        className="flex flex-col justify-start items-start gap-1"
-                    >
-                        <h3 className="text-lg md:text-xl lg:text-2xl font-medium flex justify-center items-center gap-1">
-                            <img src={PhoneIcon} className="w-[18px] md:w-[20px] lg:w-[24px]" alt="phone icon" />
-                            Call
-                        </h3>
-                        <a
-                            href="tel:+8801315243425"
-                            className="md:text-lg lg:text-xl font-mono text-white ml-[22px] md:ml-[24px] lg:ml-[28px]"
-                        >
-                            +8801315243425
-                        </a>
+        <div className="relative min-h-screen flex items-center justify-center py-20 px-4">
+            <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
+                {/* Contact Details */}
+                <div className="space-y-12 order-2 lg:order-1">
+                    <div className="space-y-4">
+                        <h1 className="text-4xl md:text-5xl font-bold text-light">
+                            Let's work <br />
+                            <span className="text-primary">together.</span>
+                        </h1>
+                        <p className="text-text-secondary text-lg leading-relaxed">
+                            I'm always open to discussing product design work or partnership opportunities.
+                            It's my duty to provide you with more than you desire.
+                        </p>
                     </div>
 
-                    {/* email address */}
-                    <div
-                        className="flex flex-col justify-start items-start gap-1"
-                    >
-                        <h3 className="text-lg md:text-xl lg:text-2xl font-medium flex justify-center items-center gap-1">
-                            <img src={EmailIcon} className="w-[18px] md:w-[20px] lg:w-[24px]" alt="email icon" />
-                            Email
-                        </h3>
-                        <a
-                            href="mailto:motiur.rahman.mizan@gmail.com"
-                            className="md:text-lg lg:text-xl font-mono text-white ml-[22px] md:ml-[24px] lg:ml-[28px]"
-                        >
-                            motiur.rahman.mizan@gmail.com
-                        </a>
+                    <div className="space-y-8">
+                        <div className="flex items-start gap-6 group">
+                            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl group-hover:scale-110 transition-transform duration-300">
+                                <AiOutlinePhone />
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-medium text-light mb-1">Phone</h3>
+                                <a href="tel:+8801315243425" className="text-text-secondary hover:text-primary transition-colors">
+                                    +880 1315 243 425
+                                </a>
+                            </div>
+                        </div>
+
+                        <div className="flex items-start gap-6 group">
+                            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl group-hover:scale-110 transition-transform duration-300">
+                                <AiOutlineMail />
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-medium text-light mb-1">Email</h3>
+                                <a href="mailto:motiur.rahman.mizan@gmail.com" className="text-text-secondary hover:text-primary transition-colors">
+                                    motiur.rahman.mizan@gmail.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div className="flex items-start gap-6 group">
+                            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl group-hover:scale-110 transition-transform duration-300">
+                                <AiOutlineEnvironment />
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-medium text-light mb-1">Address</h3>
+                                <p className="text-text-secondary">
+                                    Rangpur, Bangladesh
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Form */}
+                <div className="order-1 lg:order-2">
+                    <div className="glass-panel p-8 md:p-10 rounded-2xl relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2"></div>
+                        <HireMeForm />
                     </div>
                 </div>
             </div>

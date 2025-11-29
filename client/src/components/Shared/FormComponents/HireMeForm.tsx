@@ -3,7 +3,7 @@ import InputField from "./InputField";
 import InputPhoneNumberField from "./InputPhoneNumberField";
 import RadioGroup from "./RadioGroup";
 import TextAreaField from "./TextAreaField";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { toast } from "react-toastify";
 
 const HireMeForm = () => {
@@ -11,6 +11,7 @@ const HireMeForm = () => {
     const [phoneNumberErrorMessage, setPhoneNumberErrorMessage] = useState<string | null>(null);
     const [checkedPriority, setCheckedPriority] = useState<string | null>(null);
     const [priorityError, setPriorityError] = useState<string>("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleFormReset = (form: HTMLFormElement) => {
         form.reset();
@@ -20,18 +21,16 @@ const HireMeForm = () => {
     const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!phoneNumberIsValid) {
-
             return setPhoneNumberErrorMessage("Correct phone number must be given.");
         }
         else if (checkedPriority === null) {
             return setPriorityError("Priority must be set!");
         }
         else {
-            // removing error messages
             setPhoneNumberErrorMessage(null);
             setPriorityError("");
+            setIsSubmitting(true);
 
-            // collecting given information
             const form = new FormData(e.target as HTMLFormElement);
             const info = {
                 name: form.get("name"),
@@ -50,47 +49,92 @@ const HireMeForm = () => {
             }
             catch (err) {
                 console.error("error occurred", err);
+                toast.error("Something went wrong. Please try again.");
+            } finally {
+                setIsSubmitting(false);
             }
         }
     }
 
+    const inputStyles = {
+        borderColor: "border-white/10",
+        borderColorOnFocus: "focus-within:border-primary",
+        className: "bg-dark-lighter/50 backdrop-blur-sm text-light placeholder-text-secondary/50 rounded-lg transition-all duration-300"
+    };
+
     return (
-        <form
-            onSubmit={handleFormSubmit}
-        >
-            <h2 className="font-ubuntu text-white text-lg md:text-xl lg:text-2xl text-center mb-2">Hire Me</h2>
+        <form onSubmit={handleFormSubmit} className="space-y-6">
+            <h2 className="text-2xl font-bold text-light mb-6">Send a Message</h2>
 
-            <div
-                className="space-y-3"
-            >
-                {/* Client's Name Field */}
-                <InputField type="text" name="name" id="name" label={"Your Name"} placeholder={"type your name..."} borderColor="border-[#005700]" borderColorOnFocus="focus-within:border-[#008000]" focus isRequired />
+            <div className="space-y-5">
+                <InputField
+                    type="text"
+                    name="name"
+                    id="name"
+                    label="Your Name"
+                    placeholder="John Doe"
+                    {...inputStyles}
+                    focus
+                    isRequired
+                />
 
-                {/* Client's Email Field */}
-                <InputField type="email" name="email" id="email" label="Your Email" placeholder={"type your email..."} borderColor="border-[#005700]" borderColorOnFocus="focus-within:border-[#008000]" isRequired />
+                <InputField
+                    type="email"
+                    name="email"
+                    id="email"
+                    label="Your Email"
+                    placeholder="john@example.com"
+                    {...inputStyles}
+                    isRequired
+                />
 
-                {/* Client's Phone Number Field */}
-                <InputPhoneNumberField name="phone_number" id="phone_number" label="Your Phone Number" placeholder={"+8801315......"} isValid={phoneNumberIsValid} setIsValid={setPhoneNumberIsValid} errorMessage={phoneNumberErrorMessage} setErrorMessage={setPhoneNumberErrorMessage} borderColor="border-[#005700]" borderColorOnFocus="focus-within:border-[#008000]" isRequired />
+                <InputPhoneNumberField
+                    name="phone_number"
+                    id="phone_number"
+                    label="Your Phone Number"
+                    placeholder="+8801315......"
+                    isValid={phoneNumberIsValid}
+                    setIsValid={setPhoneNumberIsValid}
+                    errorMessage={phoneNumberErrorMessage}
+                    setErrorMessage={setPhoneNumberErrorMessage}
+                    {...inputStyles}
+                    isRequired
+                />
 
-                {/* Client's Address */}
-                <InputField type="text" name="address" id="address" label="Your Address" placeholder={"type your address..."} borderColor="border-[#005700]" borderColorOnFocus="focus-within:border-[#008000]" isRequired />
+                <InputField
+                    type="text"
+                    name="address"
+                    id="address"
+                    label="Your Address"
+                    placeholder="City, Country"
+                    {...inputStyles}
+                    isRequired
+                />
 
-                {/* Project Priority */}
-                <RadioGroup label="Priority" radioOptions={["Low", "Medium", "High"]} checkedRadio={checkedPriority} handleRadioChange={setCheckedPriority} errorMessage={priorityError} isRequired />
+                <RadioGroup
+                    label="Priority"
+                    radioOptions={["Low", "Medium", "High"]}
+                    checkedRadio={checkedPriority}
+                    handleRadioChange={setCheckedPriority}
+                    errorMessage={priorityError}
+                    isRequired
+                />
 
-                {/* Message Field */}
-                <TextAreaField name="project_description" id="project_description" label="Project Description" placeholder={"project description here..."} borderColor="border-[#005700]" borderColorOnFocus="focus-within:border-[#008000]" isRequired />
+                <TextAreaField
+                    name="project_description"
+                    id="project_description"
+                    label="Project Description"
+                    placeholder="Tell me about your project..."
+                    {...inputStyles}
+                    isRequired
+                />
 
-                {/* Submit Button */}
-                <div
-                    className="flex justify-center items-center"
+                <button
+                    disabled={isSubmitting}
+                    className="w-full py-3 px-6 bg-primary text-dark font-bold rounded-lg hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-primary/20"
                 >
-                    <button
-                        className="border-2 border-orange-700 px-5 py-2 rounded-md"
-                    >
-                        Submit
-                    </button>
-                </div>
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                </button>
             </div>
         </form>
     );
