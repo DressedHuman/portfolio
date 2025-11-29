@@ -61,3 +61,89 @@ class ContactMessage(models.Model):
     
     def __str__(self):
         return f"{self.name} - {self.priority} ({self.created_at.strftime('%Y-%m-%d %H:%M')})"
+
+
+class Technology(models.Model):
+    CATEGORY_CHOICES = [
+        ('Frontend', 'Frontend'),
+        ('Backend', 'Backend'),
+        ('Database', 'Database'),
+        ('Tool', 'Tool'),
+    ]
+    
+    name = models.CharField(max_length=100, unique=True)
+    icon = models.ImageField(upload_to='technologies/')
+    bg_color = models.CharField(max_length=20, blank=True, null=True, help_text="Background color for icon")
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = "Technology"
+        verbose_name_plural = "Technologies"
+        ordering = ['category', 'name']
+    
+    def __str__(self):
+        return f"{self.name} ({self.category})"
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=200)
+    type = models.CharField(max_length=100, help_text="Project type (e.g., Web App, Mobile App)")
+    description = models.TextField(help_text="Detailed project description")
+    
+    # Links
+    github_link = models.URLField(help_text="Main GitHub repository link")
+    github_frontend_link = models.URLField(blank=True, null=True, help_text="Frontend repository link")
+    github_backend_link = models.URLField(blank=True, null=True, help_text="Backend repository link")
+    live_link = models.URLField(help_text="Live demo link")
+    
+    # Image
+    mockup_image = models.ImageField(upload_to='projects/', help_text="Project mockup/screenshot")
+    
+    # Metadata
+    is_active = models.BooleanField(default=True, help_text="Show on frontend")
+    display_order = models.IntegerField(default=0, help_text="Order of display (lower first)")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = "Project"
+        verbose_name_plural = "Projects"
+        ordering = ['display_order', '-created_at']
+    
+    def __str__(self):
+        return self.name
+
+
+class ProjectFeature(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='features')
+    feature_text = models.CharField(max_length=200)
+    order = models.IntegerField(default=0)
+    
+    class Meta:
+        verbose_name = "Project Feature"
+        verbose_name_plural = "Project Features"
+        ordering = ['order']
+    
+    def __str__(self):
+        return f"{self.project.name} - {self.feature_text}"
+
+
+class ProjectTechnology(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='project_technologies')
+    technology = models.ForeignKey(Technology, on_delete=models.CASCADE)
+    category = models.CharField(max_length=20, choices=[
+        ('Frontend', 'Frontend'),
+        ('Backend', 'Backend'),
+        ('Databases', 'Databases'),
+    ])
+    order = models.IntegerField(default=0)
+    
+    class Meta:
+        verbose_name = "Project Technology"
+        verbose_name_plural = "Project Technologies"
+        ordering = ['category', 'order']
+        unique_together = ['project', 'technology', 'category']
+    
+    def __str__(self):
+        return f"{self.project.name} - {self.technology.name} ({self.category})"

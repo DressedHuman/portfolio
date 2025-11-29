@@ -1,29 +1,25 @@
-import { useEffect } from 'react';
-import { TechnologyType } from './SingleProject';
+import { TechnologyType } from "./SingleProject";
 
 interface Props {
     technology: TechnologyType;
-};
-
+}
 
 const TechnologyIcon = ({ technology }: Props) => {
-    useEffect(() => {
-        if (technology.img) {
-            const img = new Image();
-            img.src = technology.img;
-
-            img.onload = () => console.log("image preloaded successfully");
-            img.onerror = (err) => console.error("failed to preload image", err);
-        }
-    }, [])
+    const iconSrc = technology.img || technology.icon || '';
+    const bgColor = technology.bgColor || technology.bg_color || 'transparent';
 
     return (
-        <div>
-            <img src={technology?.img} className={`w-6 md:w-7 lg:w-8 aspect-square rounded object-contain ${technology.bgColor ? 'p-1' : ''}`} style={{
-                backgroundColor: technology.bgColor || 'transparent',
-            }} alt={technology?.name} title={technology?.name} />
+        <div
+            className='w-9 md:w-11 lg:w-14 aspect-square rounded-lg p-1 md:p-[6px] lg:p-2'
+            style={{ backgroundColor: bgColor }}
+        >
+            <img
+                src={iconSrc}
+                alt={technology.name}
+                className='w-full h-full object-contain'
+            />
         </div>
     );
-}
+};
 
 export default TechnologyIcon;

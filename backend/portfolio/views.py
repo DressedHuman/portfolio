@@ -2,8 +2,11 @@ from rest_framework import viewsets, mixins, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
-from .models import About, ContactMessage
-from .serializers import AboutSerializer, ContactMessageSerializer
+from .models import About, ContactMessage, Technology, Project
+from .serializers import (
+    AboutSerializer, ContactMessageSerializer,
+    TechnologySerializer, ProjectSerializer
+)
 
 
 class AboutViewSet(viewsets.ModelViewSet):
@@ -62,3 +65,27 @@ class ContactMessageViewSet(viewsets.ModelViewSet):
         message.save()
         serializer = self.get_serializer(message)
         return Response(serializer.data)
+
+
+class TechnologyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Technology.objects.all()
+    serializer_class = TechnologySerializer
+    permission_classes = [AllowAny]
+
+
+class ProjectViewSet(viewsets.ModelViewSet):
+    serializer_class = ProjectSerializer
+    
+    def get_queryset(self):
+        # Public users see only active projects
+        if self.request.user.is_staff:
+            return Project.objects.all().order_by('display_order', '-created_at')
+        return Project.objects.filter(is_active=True).order_by('display_order', '-created_at')
+    
+    def get_permissions(self):
+        # Public read, admin-only for write
+        if self.action in ['list', 'retrieve']:
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAdminUser]
+        return [permission() for permission in permission_classes]

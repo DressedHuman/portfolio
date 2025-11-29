@@ -7,15 +7,17 @@ import { useEffect } from 'react';
 
 export interface TechnologyType {
     img?: string;
+    icon?: string;  // Backend field
     bgColor?: string;
+    bg_color?: string;  // Backend field
     name?: string;
-};
+}
 
 export interface PropjectTechnologiesType {
     Frontend: TechnologyType[];
     Backend?: TechnologyType[];
     Databases?: TechnologyType[];
-};
+}
 
 interface Props {
     projectName: string;
@@ -31,7 +33,7 @@ interface Props {
 }
 
 const SingleProject = ({ projectName, projectType, projectDetails, projectFeatures, projectTechnologies, projectMockup, projectGithubSourceLink, projectGithubFrontendLink, projectGithubBackendLink, projectLiveLink }: Props) => {
-    
+
     useEffect(() => {
         const img = new Image();
         img.src = projectMockup;
