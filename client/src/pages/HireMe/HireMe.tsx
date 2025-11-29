@@ -1,18 +1,9 @@
-import { useEffect } from "react";
 import HireMeForm from "../../components/Shared/FormComponents/HireMeForm";
 import AuthorImg from '../../assets/MotiurRahmanMizanFromBangladesh.webp';
 import PhoneIcon from './icons/phone.svg';
 import EmailIcon from './icons/email.svg';
 
 const HireMe = () => {
-    useEffect(() => {
-        const img = new Image();
-        img.src = AuthorImg;
-
-        img.onload = () => console.log("image preloaded successfully");
-        img.onerror = (err) => console.error("failed to preload image", err);
-    }, [])
-
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 auto-rows-max gap-7">
             {/* hire me form here */}

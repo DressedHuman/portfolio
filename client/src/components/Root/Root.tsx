@@ -11,14 +11,31 @@ const Root = () => {
     const [hideScrollBtn, setHideScrollBtn] = useState(true);
 
     useEffect(() => {
-        window.addEventListener('scroll', () => {
-            if (window.scrollX > 20 || window.scrollY > 0) {
-                setHideScrollBtn(false);
+        let timeoutId: number;
+        
+        const handleScroll = () => {
+            // Throttle scroll events
+            if (timeoutId) return;
+            
+            timeoutId = window.setTimeout(() => {
+                if (window.scrollX > 20 || window.scrollY > 0) {
+                    setHideScrollBtn(false);
+                } else {
+                    setHideScrollBtn(true);
+                }
+                timeoutId = 0;
+            }, 100);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        
+        // Cleanup function to prevent memory leak
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            if (timeoutId) {
+                clearTimeout(timeoutId);
             }
-            else {
-                setHideScrollBtn(true);
-            }
-        })
+        };
     }, [])
 
 

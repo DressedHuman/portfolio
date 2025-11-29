@@ -43,7 +43,8 @@ const HireMeForm = () => {
             };
 
             try {
-                await axios.post("http://localhost:8000/api/receive_message/", info);
+                const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+                await axios.post(`${API_URL}/api/receive_message/`, info);
                 handleFormReset(e.target as HTMLFormElement);
                 toast.success("Message received successfully. I will contact you soon.")
             }

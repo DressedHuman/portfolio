@@ -3,17 +3,8 @@ import AuthorImg from '../../assets/MotiurRahmanMizanFromBangladesh.webp';
 import About from "../../components/About/About";
 import Skills from "../../components/Skills/Skills";
 import Projects from "../../components/Projects/Projects";
-import { useEffect } from "react";
 
 const Homepage = () => {
-    useEffect(() => {
-        const img = new Image();
-        img.src = AuthorImg;
-
-        img.onload = () => console.log("image preloaded successfully");
-        img.onerror = (err) => console.error("failed to preload image", err);
-    }, [])
-
     return (
         <div className=" space-y-7 md:space-x-12 lg:space-y-28">
             {/* banner section */}
