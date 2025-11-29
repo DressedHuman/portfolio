@@ -41,20 +41,24 @@ const Projects = () => {
 
     if (loading) {
         return (
-            <div className="w-[95%] mx-auto flex justify-center items-center h-64">
+            <div className="flex justify-center items-center h-64">
                 <Loader />
             </div>
         );
     }
 
     return (
-        <div className="w-[95%] mx-auto space-y-3 md:space-y-5 lg:space-y-12">
-            <h2 className="font-ubuntu text-xl md:text-2xl lg:text-3xl font-medium text-center">Projects</h2>
-            <div className='space-y-3 md:space-y-5 lg:space-y-12'>
-                {projects.map((project) => (
+        <div className="relative">
+            <div className="flex flex-col items-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold text-light mb-4">Featured Projects</h2>
+                <div className="w-20 h-1 bg-primary rounded-full"></div>
+            </div>
+
+            <div className="space-y-24">
+                {projects.map((project, idx) => (
                     <Suspense
                         key={project.id}
-                        fallback={<div className='relative w-full h-full'><Loader /></div>}
+                        fallback={<div className="h-96 glass-card rounded-xl animate-pulse"></div>}
                     >
                         <SingleProject
                             projectName={project.name}
@@ -67,6 +71,7 @@ const Projects = () => {
                             projectFeatures={project.features.map(f => f.feature_text)}
                             projectTechnologies={project.technologies}
                             projectMockup={project.mockup_image}
+                            isEven={idx % 2 === 0}
                         />
                     </Suspense>
                 ))}

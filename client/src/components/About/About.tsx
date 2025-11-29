@@ -1,14 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MotiurRahmanMizan from '../../assets/MotiurRahmanMizan.webp';
-import facebook from '../../../src/assets/icons/facebook.svg';
-import github from '../../../src/assets/icons/Github.svg';
-import linkedin from '../../../src/assets/icons/linkedin.svg';
-import twitter from '../../../src/assets/icons/Twitter.svg';
+import { AiFillGithub, AiFillLinkedin, AiFillFacebook, AiOutlineTwitter } from 'react-icons/ai';
 import ResumeDownloadButton from '../Shared/ResumeDownloadButton';
 import axios from 'axios';
-
-type AboutInfoType = [string, string];
 
 interface AboutData {
     name: string;
@@ -39,14 +34,13 @@ const About = () => {
             setAboutData(response.data);
         } catch (error) {
             console.error('Error fetching about data:', error);
-            // Fallback to default data if API fails
             setAboutData({
                 name: 'Motiur Rahman Mizan',
                 title: 'Web Developer',
                 address: 'Rangpur, Bangladesh',
                 email: 'motiur.rahman.mizan@gmail.com',
                 phone: '+8801315243425',
-                bio: "I'm a passionate programmer and web developer with a hunger for efficient problem solving. I have 3+ years of personal programming experience with Python! Though I'm currently working with React for frontend and Django for backend, I can learn any technology within a short period of time based upon my stronger💪🏿 foundational programming and problem solving skills. So, you can undoubtedly put your trust on me to take me in your next project for greater success! I hope,\nsomething better is waiting!🙂",
+                bio: "I'm a passionate programmer and web developer with a hunger for efficient problem solving. I have 3+ years of personal programming experience with Python! Though I'm currently working with React for frontend and Django for backend, I can learn any technology within a short period of time based upon my stronger foundational programming and problem solving skills.",
                 github_url: 'https://github.com/DressedHuman',
                 linkedin_url: 'https://www.linkedin.com/in/dressedhuman/',
                 facebook_url: 'https://facebook.com/dressed.human',
@@ -58,148 +52,87 @@ const About = () => {
         }
     };
 
-    if (loading) {
-        return (
-            <div className="flex justify-center items-center h-64">
-                <p className="text-gray-400">Loading...</p>
-            </div>
-        );
-    }
+    if (loading) return <div className="animate-pulse h-96 bg-dark-card rounded-xl"></div>;
+    if (!aboutData) return null;
 
-    if (!aboutData) {
-        return null;
-    }
-
-    const aboutInfo: AboutInfoType[] = [
-        ['Name', aboutData.name],
-        ['Title', aboutData.title],
-        ['Address', aboutData.address],
-        ['Email', aboutData.email],
-        ['Phone', aboutData.phone]
+    const socialLinks = [
+        { icon: AiFillGithub, url: aboutData.github_url, label: 'GitHub' },
+        { icon: AiFillLinkedin, url: aboutData.linkedin_url, label: 'LinkedIn' },
+        { icon: AiFillFacebook, url: aboutData.facebook_url, label: 'Facebook' },
+        { icon: AiOutlineTwitter, url: aboutData.twitter_url, label: 'Twitter' },
     ];
-
-    const socialInfo = [
-        {
-            name: "GitHub",
-            url: aboutData.github_url || "https://github.com/DressedHuman",
-            img: github,
-            bgColor: ''
-        },
-        {
-            name: 'LinkedIn',
-            url: aboutData.linkedin_url || 'https://www.linkedin.com/in/dressedhuman/',
-            img: linkedin,
-            bgColor: ''
-        },
-        {
-            name: "Facebook",
-            url: aboutData.facebook_url || "https://facebook.com/dressed.human",
-            img: facebook,
-            bgColor: ''
-        },
-        {
-            name: "Twitter",
-            url: aboutData.twitter_url || 'https://twitter.com/dressed_human',
-            img: twitter,
-            bgColor: ''
-        }
-    ];
-
 
     return (
-        <div>
-            <h2 className="font-ubuntu text-xl md:text-2xl lg:text-3xl font-medium text-center">About Me</h2>
-            <div className="grid grid-cols-1 md:grid-cols-7 lg:grid-cols-5 auto-rows-max mt-3 md:mt-5 lg:mt-12">
-                <div className='md:col-span-4 lg:col-span-3 px-3 md:px-5 lg:px-7 flex-1 flex flex-col justify-center items-start gap-3'>
-                    <div className='w-full overflow-x-auto'>
-                        <table className="text-lg lg:text-xl">
-                            <tbody>
-                                {aboutInfo.map((info, idx) => (
-                                    <tr key={idx}>
-                                        <td className="text-[forestgreen]">&#9679;&nbsp;</td>
-                                        <td>{info[0]}</td>
-                                        <td>&nbsp;&nbsp;:&nbsp;&nbsp;</td>
-                                        <td className="text-[greenyellow] font-medium">{info[1]}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+        <div className="relative">
+            <div className="flex flex-col items-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold text-light mb-4">About Me</h2>
+                <div className="w-20 h-1 bg-primary rounded-full"></div>
+            </div>
 
-                    <div className="hidden lg:flex justify-center items-center gap-7">
-                        {socialInfo.map((social, idx) => (
-                            <div key={idx} className='w-10 h-11 p-1 hover:p-0 duration-300'>
-                                <a href={social.url} target='_blank' rel="noopener noreferrer">
-                                    <img
-                                        src={social.img}
-                                        alt={social.name}
-                                        className='w-full h-full rounded'
-                                        style={{ backgroundColor: social.bgColor || 'transparent' }}
-                                    />
-                                </a>
-                            </div>
-                        ))}
-                    </div>
-
-                    <p className="font-open_sans text-[#dddeee] text-justify first-letter:text-2xl first-letter:text-[magenta]">
-                        {aboutData.bio}
-                    </p>
-
-                    <div className='hidden lg:flex flex-wrap justify-center items-center gap-x-3 gap-y-1'>
-                        {/* hire me button */}
-                        <Link
-                            to={"/hire-me"}
-                            className='px-2 hover:px-3 py-1 border-2 border-red-700 text-lg text-white font-medium font-mono hover:scale-105 rounded-md duration-300'
-                        >
-                            Hire Me
-                        </Link>
-                        {/* resume download button */}
-                        <ResumeDownloadButton resumeFilePath='' />
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                {/* Profile Image */}
+                <div className="lg:col-span-5 relative group">
+                    <div className="absolute inset-0 bg-primary/20 rounded-xl translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300"></div>
+                    <div className="relative rounded-xl overflow-hidden glass-card">
+                        <img
+                            src={aboutData.profile_image || MotiurRahmanMizan}
+                            alt={aboutData.name}
+                            className="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                        />
                     </div>
                 </div>
 
+                {/* Content */}
+                <div className="lg:col-span-7 space-y-8">
+                    <div className="glass-panel p-8 rounded-xl space-y-6">
+                        <p className="text-text-secondary text-lg leading-relaxed">
+                            {aboutData.bio}
+                        </p>
 
-                {/* right side with photo and socials */}
-                <div className='md:col-span-3 lg:col-span-2 flex flex-col justify-between items-center pb-3 md:pb-0 space-y-3 md:space-y-5 lg:space-y-10'>
-                    <div className="px-3 md:px-5 lg:px-10 flex-1 space-y-2">
-                        <img
-                            className='w-full hidden md:inline-block'
-                            src={aboutData.profile_image || MotiurRahmanMizan}
-                            alt={aboutData.name}
-                        />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-light">
+                            <div className="space-y-2">
+                                <p className="text-sm text-text-secondary">Name</p>
+                                <p className="font-medium">{aboutData.name}</p>
+                            </div>
+                            <div className="space-y-2">
+                                <p className="text-sm text-text-secondary">Email</p>
+                                <a href={`mailto:${aboutData.email}`} className="font-medium hover:text-primary transition-colors">
+                                    {aboutData.email}
+                                </a>
+                            </div>
+                            <div className="space-y-2">
+                                <p className="text-sm text-text-secondary">Location</p>
+                                <p className="font-medium">{aboutData.address}</p>
+                            </div>
+                            <div className="space-y-2">
+                                <p className="text-sm text-text-secondary">Phone</p>
+                                <p className="font-medium">{aboutData.phone}</p>
+                            </div>
+                        </div>
+                    </div>
 
-                        <div
-                            className='space-y-2 lg:hidden'
+                    <div className="flex flex-wrap gap-4 items-center">
+                        <Link
+                            to="/hire-me"
+                            className="px-8 py-3 bg-transparent border border-primary text-primary hover:bg-primary/10 rounded-lg font-medium transition-all duration-300"
                         >
-                            {/* contact links */}
-                            <div className="flex justify-center items-center gap-7">
-                                {
-                                    socialInfo.map((social, idx) => <div key={idx} className='w-10 h-11 p-1 hover:p-0 duration-300'>
-                                        <a href={social.url} target='_blank'>
-                                            <img
-                                                src={social.img}
-                                                alt={social.name}
-                                                className={`w-full h-full rounded`}
-                                                style={{
-                                                    backgroundColor: `${social.bgColor || 'transparent'}`
-                                                }}
-                                            />
-                                        </a>
-                                    </div>)
-                                }
-                            </div>
+                            Hire Me
+                        </Link>
+                        <ResumeDownloadButton resumeFilePath="" />
 
-                            <div className='flex flex-wrap justify-center items-center gap-x-3 gap-y-1'>
-                                {/* hire me button */}
-                                <Link
-                                    to={"/hire-me"}
-                                    className='px-2 hover:px-3 py-1 border-2 border-red-700 text-lg text-white font-medium font-mono hover:scale-105 rounded-md duration-300'
+                        <div className="flex gap-4 ml-auto">
+                            {socialLinks.map((social, idx) => (
+                                <a
+                                    key={idx}
+                                    href={social.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-2xl text-text-secondary hover:text-primary hover:-translate-y-1 transition-all duration-300"
+                                    aria-label={social.label}
                                 >
-                                    Hire Me
-                                </Link>
-                                {/* resume download button */}
-                                <ResumeDownloadButton resumeFilePath='' />
-                            </div>
+                                    <social.icon />
+                                </a>
+                            ))}
                         </div>
                     </div>
                 </div>

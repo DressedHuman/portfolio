@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import Header from "../Header/Header";
 import { Scroller } from "../../javascripts/Scroller/Scroller";
 import { useEffect, useState } from "react";
 import UpArrow from '/UpArrow.svg';
@@ -12,11 +11,10 @@ const Root = () => {
 
     useEffect(() => {
         let timeoutId: number;
-        
+
         const handleScroll = () => {
-            // Throttle scroll events
             if (timeoutId) return;
-            
+
             timeoutId = window.setTimeout(() => {
                 if (window.scrollX > 20 || window.scrollY > 0) {
                     setHideScrollBtn(false);
@@ -28,8 +26,7 @@ const Root = () => {
         };
 
         window.addEventListener('scroll', handleScroll);
-        
-        // Cleanup function to prevent memory leak
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
             if (timeoutId) {
@@ -40,33 +37,42 @@ const Root = () => {
 
 
     return (
-        <div className="space-y-7">
-            <Header />
-            <VerticalNavbar />
-            <div className="flex-grow lg:ml-[75px]">
-                <Outlet />
+        <div className="relative min-h-screen bg-dark text-light overflow-hidden selection:bg-primary/20 selection:text-primary">
+            {/* Ambient Background Glow */}
+            <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px] animate-pulse-slow"></div>
+                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/10 rounded-full blur-[120px] animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+            </div>
 
-                {/* footer section */}
+            <VerticalNavbar />
+
+            <div className="flex-grow">
+                <Outlet />
                 <Footer />
             </div>
 
-            {/* scroll to top button */}
-            <button className={`fixed bottom-4 right-5 backdrop-blur-md w-10 md:w-14 h-10 md:h-14 rounded-[50%] text-[white] text-xl flex justify-center items-center md:hover:-translate-y-[17%] duration-75 ${hideScrollBtn && 'hidden'}`} onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                Scroller(`body`, 1257);
-            }}>
-                <img src={UpArrow} className="w-[110%] h-[110%]" alt="&uarr;" />
+            {/* Scroll to top button */}
+            <button
+                className={`fixed bottom-8 right-8 z-50 p-3 rounded-full bg-dark-card border border-white/10 text-primary shadow-lg shadow-primary/20 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:shadow-primary/40 ${hideScrollBtn ? 'opacity-0 translate-y-10 pointer-events-none' : 'opacity-100 translate-y-0'}`}
+                onClick={() => Scroller(`body`, 1257)}
+            >
+                <img src={UpArrow} className="w-6 h-6" alt="Scroll to top" />
             </button>
 
-            <div className="absolute">
-                <ToastContainer
-                    position="top-right"
-                    autoClose={3500}
-                    newestOnTop={false}
-                    transition={Slide}
-                    pauseOnFocusLoss={false}
-                    pauseOnHover
-                />
-            </div>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={3500}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                transition={Slide}
+                toastClassName="!bg-dark-lighter !text-light !border !border-white/10 !rounded-lg !shadow-xl"
+            />
         </div>
     );
 };
