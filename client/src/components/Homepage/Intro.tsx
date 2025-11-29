@@ -37,7 +37,7 @@ const Intro = () => {
             </div>
 
             <p className="max-w-xl text-text-secondary text-lg md:text-xl leading-relaxed animate-fade-in-up animation-delay-300">
-                I'm a passionate <span className="text-primary font-semibold" ref={myTitle}></span> specializing in building (and occasionally designing) exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products.
+                I'm a passionate <span className="text-primary font-semibold" ref={myTitle}></span> specializing in building exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products.
             </p>
 
             <div className="flex flex-wrap gap-4 animate-fade-in-up animation-delay-400 mt-4">

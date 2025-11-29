@@ -46,7 +46,7 @@ const Root = () => {
 
             <VerticalNavbar />
 
-            <div className="flex-grow">
+            <div className="flex-grow pb-24 lg:pb-0 lg:pl-32 px-4 md:px-8">
                 <Outlet />
                 <Footer />
             </div>
