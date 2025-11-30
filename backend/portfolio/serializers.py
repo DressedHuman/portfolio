@@ -8,7 +8,7 @@ class AboutSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'name', 'title', 'address', 'email', 'phone', 'bio',
             'github_url', 'linkedin_url', 'facebook_url', 'twitter_url',
-            'profile_image', 'created_at', 'updated_at',
+            'profile_image', 'resume', 'created_at', 'updated_at',
         ]
         read_only_fields = ['id', 'created_at', 'updated_at']
 

@@ -15,6 +15,7 @@ interface AboutData {
     facebook_url: string;
     twitter_url: string;
     profile_image: string | null;
+    resume: string | null;
 }
 
 const AboutEditor = () => {
@@ -31,8 +32,10 @@ const AboutEditor = () => {
         facebook_url: '',
         twitter_url: '',
         profile_image: null,
+        resume: null,
     });
     const [imageFile, setImageFile] = useState<File | null>(null);
+    const [resumeFile, setResumeFile] = useState<File | null>(null);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
 
@@ -62,6 +65,12 @@ const AboutEditor = () => {
         }
     };
 
+    const handleResumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            setResumeFile(e.target.files[0]);
+        }
+    };
+
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setSaving(true);
@@ -70,7 +79,7 @@ const AboutEditor = () => {
             const submitData = new FormData();
 
             (Object.keys(formData) as Array<keyof AboutData>).forEach((key) => {
-                if (key !== 'id' && key !== 'profile_image') {
+                if (key !== 'id' && key !== 'profile_image' && key !== 'resume') {
                     const value = formData[key];
                     if (value !== null && value !== undefined) {
                         submitData.append(key, value.toString());
@@ -80,6 +89,10 @@ const AboutEditor = () => {
 
             if (imageFile) {
                 submitData.append('profile_image', imageFile);
+            }
+
+            if (resumeFile) {
+                submitData.append('resume', resumeFile);
             }
 
             await aboutAPI.update(formData.id, submitData);
@@ -246,29 +259,60 @@ const AboutEditor = () => {
                     </div>
                 </div>
 
-                {/* Profile Image */}
-                <div>
-                    <h2 className="text-xl font-semibold text-white mb-4">Profile Image</h2>
-                    {formData.profile_image && (
-                        <div className="mb-4">
-                            <img
-                                src={formData.profile_image}
-                                alt="Current profile"
-                                className="w-32 h-32 object-cover rounded-lg border-2 border-gray-600"
-                            />
-                        </div>
-                    )}
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                        className="block w-full text-sm text-gray-400
-                            file:mr-4 file:py-2 file:px-4
-                            file:rounded-lg file:border-0
-                            file:text-sm file:font-semibold
-                            file:bg-green-600 file:text-white
-                            hover:file:bg-green-700 file:cursor-pointer"
-                    />
+                {/* Profile Image & Resume */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* Profile Image */}
+                    <div>
+                        <h2 className="text-xl font-semibold text-white mb-4">Profile Image</h2>
+                        {formData.profile_image && (
+                            <div className="mb-4">
+                                <img
+                                    src={formData.profile_image}
+                                    alt="Current profile"
+                                    className="w-32 h-32 object-cover rounded-lg border-2 border-gray-600"
+                                />
+                            </div>
+                        )}
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            className="block w-full text-sm text-gray-400
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-lg file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-green-600 file:text-white
+                                hover:file:bg-green-700 file:cursor-pointer"
+                        />
+                    </div>
+
+                    {/* Resume Upload */}
+                    <div>
+                        <h2 className="text-xl font-semibold text-white mb-4">Resume</h2>
+                        {formData.resume && (
+                            <div className="mb-4">
+                                <a
+                                    href={formData.resume}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-green-400 hover:text-green-300 underline"
+                                >
+                                    View Current Resume
+                                </a>
+                            </div>
+                        )}
+                        <input
+                            type="file"
+                            accept=".pdf,.doc,.docx"
+                            onChange={handleResumeChange}
+                            className="block w-full text-sm text-gray-400
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-lg file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-green-600 file:text-white
+                                hover:file:bg-green-700 file:cursor-pointer"
+                        />
+                    </div>
                 </div>
 
                 {/* Submit Button */}

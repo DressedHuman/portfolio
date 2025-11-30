@@ -17,6 +17,7 @@ interface AboutData {
     facebook_url: string;
     twitter_url: string;
     profile_image: string | null;
+    resume: string | null;
 }
 
 const About = () => {
@@ -119,7 +120,7 @@ const About = () => {
                         >
                             Hire Me
                         </Link>
-                        <ResumeDownloadButton resumeFilePath="" />
+                        <ResumeDownloadButton resumeFilePath={aboutData.resume || ""} resumeDownloadName="Motiur_Rahman_Mizan_Resume.pdf" />
 
                         <div className="flex gap-4 ml-auto">
                             {socialLinks.map((social, idx) => (

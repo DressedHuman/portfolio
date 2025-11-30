@@ -18,6 +18,7 @@ class About(models.Model):
     twitter_url = models.URLField(blank=True, null=True)
     
     profile_image = models.ImageField(upload_to='profile/', blank=True, null=True)
+    resume = models.FileField(upload_to='resume/', blank=True, null=True)
     is_active = models.BooleanField(default=True)  # Only one active record allowed
     
     created_at = models.DateTimeField(auto_now_add=True)

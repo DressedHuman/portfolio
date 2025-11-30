@@ -1,11 +1,27 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Typed from "typed.js";
 import './TypedCursor.css';
 import ResumeDownloadButton from "../Shared/ResumeDownloadButton";
 import EmailMe from "../Shared/EmailMe";
+import { aboutAPI } from "../../utils/api";
 
 const Intro = () => {
     const myTitle = useRef<HTMLSpanElement | null>(null);
+    const [resumeUrl, setResumeUrl] = useState<string>("");
+
+    useEffect(() => {
+        const fetchResume = async () => {
+            try {
+                const data = await aboutAPI.get();
+                if (data.resume) {
+                    setResumeUrl(data.resume);
+                }
+            } catch (error) {
+                console.error("Failed to fetch resume", error);
+            }
+        };
+        fetchResume();
+    }, []);
 
     useEffect(() => {
         const typed = new Typed(myTitle.current, {
@@ -41,7 +57,7 @@ const Intro = () => {
             </p>
 
             <div className="flex flex-wrap gap-4 animate-fade-in-up animation-delay-400 mt-4">
-                <ResumeDownloadButton resumeFilePath="" resumeDownloadName="" />
+                <ResumeDownloadButton resumeFilePath={resumeUrl} resumeDownloadName="Motiur_Rahman_Mizan_Resume.pdf" />
                 <EmailMe email="motiur.rahman.mizan@gmail.com" />
             </div>
         </div>
