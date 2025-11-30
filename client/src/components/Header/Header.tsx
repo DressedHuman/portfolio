@@ -5,6 +5,7 @@ import DownloadIcon from '../../assets/download.svg';
 import { Scroller } from "../../javascripts/Scroller/Scroller";
 import { useEffect, useRef, useState } from "react";
 import { fileDownloadFunction } from "../../javascripts/FileDownloader/FileDownloader";
+import { aboutAPI } from "../../utils/api";
 
 export interface NavLinkType {
     name: string;
@@ -46,12 +47,33 @@ const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
     const navLinkClickHandler = async (sectId: string) => {
-        if(window.location.origin+"/" !== window.location.href){
+        if (window.location.origin + "/" !== window.location.href) {
             await nav("/");
         }
         Scroller(sectId, 1257);
         setIsMenuOpen(false);
     }
+
+    const [resumeUrl, setResumeUrl] = useState<string>("");
+
+    useEffect(() => {
+        const fetchResume = async () => {
+            try {
+                // Assuming 'aboutAPI' is imported or defined elsewhere, e.g., from a service file
+                // For this example, I'll mock it or assume it's available.
+                // If aboutAPI is not defined, this will cause a runtime error.
+                // For a complete solution, aboutAPI needs to be imported or defined.
+                // Example: import * as aboutAPI from '../../services/aboutAPI';
+                const data = await aboutAPI.get(); // This line assumes aboutAPI exists
+                if (data.resume) {
+                    setResumeUrl(data.resume);
+                }
+            } catch (error) {
+                console.error("Failed to fetch resume", error);
+            }
+        };
+        fetchResume();
+    }, []);
 
     useEffect(() => {
         if (menuRef.current) {
@@ -120,7 +142,11 @@ const Header = () => {
                     <button
                         key={"my-resume"}
                         onClick={() => {
-                            fileDownloadFunction("/Motiur_Rahman_Mizan_Resume.pdf");
+                            if (resumeUrl) {
+                                fileDownloadFunction(resumeUrl);
+                            } else {
+                                console.error("Resume URL not available");
+                            }
                             setIsMenuOpen(false);
                         }}
                         className="w-full hover:bg-[gray] flex justify-end gap-2 p-1"

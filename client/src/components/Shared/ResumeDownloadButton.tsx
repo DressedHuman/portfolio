@@ -6,13 +6,17 @@ interface Props {
     resumeDownloadName?: string;
 };
 
-const ResumeDownloadButton = ({resumeFilePath, resumeDownloadName}: Props) => {
+const ResumeDownloadButton = ({ resumeFilePath, resumeDownloadName }: Props) => {
     return (
         <>
             {/* resume download button */}
             <button
                 className="flex justify-center items-center gap-1 font-mono border-0 border-transparent px-2 py-1 rounded-md relative overflow-clip hover:bg-[slateblue] group"
-                onClick={() => fileDownloadFunction(resumeFilePath || "/Motiur_Rahman_Mizan_Resume.pdf", resumeDownloadName)}
+                onClick={() => {
+                    if (resumeFilePath) {
+                        fileDownloadFunction(resumeFilePath, resumeDownloadName);
+                    }
+                }}
             >
                 <div className="absolute w-2 -top-[2px] -left-[4px] -bottom-[2px] bg-orange-700"></div>
                 <img
