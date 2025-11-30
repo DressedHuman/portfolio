@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import MotiurRahmanMizan from '../../assets/MotiurRahmanMizan.webp';
 import { AiFillGithub, AiFillLinkedin, AiFillFacebook, AiOutlineTwitter } from 'react-icons/ai';
 import ResumeDownloadButton from '../Shared/ResumeDownloadButton';
 import axios from 'axios';
@@ -75,7 +76,7 @@ const About = () => {
                     <div className="absolute inset-0 bg-primary/20 rounded-xl translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300"></div>
                     <div className="relative rounded-xl overflow-hidden glass-card">
                         <img
-                            src={aboutData.profile_image || ''}
+                            src={aboutData.profile_image || MotiurRahmanMizan}
                             alt={aboutData.name}
                             className="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                         />
